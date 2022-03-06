@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
+
+<link href="../static/main.css" rel="stylesheet">
+<link href="../static/mycss.css" rel="stylesheet">
+<link href="../static/icon.css" rel="stylesheet">
+<link href="../static/modalstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="../static/font-awesome/css/font-awesome.min.css">
+<link rel="icon" href="../static/pj.png" type="image/png" sizes="32x32">
+<link rel="stylesheet" type="text/css" href="../static/twitter.bootstrap.min.css">
+
+<script src="../static/js/351jquery.min.js"></script>
+<script src="../static/js/341jquery.min.js"></script>
+<script src="../static/js/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script></script>
+<script src="../static/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+
+<script src="../static/js/jquery-3.6.0.min.js"></script>
+<script src="../static/js/jquery-git.js"></script>
+<script src="../static/js/twitter.bootstrap.min.js"></script>
+</head>
+<body>
+<div id="maincontainer">
+<div id="topsection">
+<div id='header' style="width:100%; height: 125px; overflow: hidden;">
+<div style="height: 125px; width:100%;" class="tooltip1">
+<div id='header1' style='width:100%;height:125px; background: url(../static/uploads/pj.png); background-size:125px 125px; margin-right:10px; background-repeat:no-repeat; background-position:right center;'>
+<div style='margin-left:15px; font-size:18px;float: left;'>
+<h1> Dr.Pankaj Joshi </h1>
+<p style='margin-left:240px; margin-top:-5px; font-size:18px;'>
+B.A.M.S.
+</p>
+<p style='margin-left:0px; margin-top:-5px; font-size:14px; font-weight:bold; text-align: center;'>
++91 94280 84141
+</p>
+</div>
+</div>
+
+
+</div>
+</div>
+<div style="clear:both;" />
+<div class='tbldiv clickable' style='width:100%; font-size:18px;'>
+<div class='celldiv' style='float: left; width:150px;' align="left">
+<a href='/'>Home</a>
+</div>
+<div class='celldiv' style='float: right; margin-right:20px;'>
+{% if 'logged_in' in session %}
+<a href='{{ url_for('routes.profile') }}' title='Profile'><img src="../static/images/user.png" /></a>
+<a href="{{ url_for('routes.logout') }}" title='Logout'><img src="../static/images/sign_out.png" /></span></a>
+{% endif %}
+{% if not 'logged_in' in session %}
+<a href="{{ url_for('routes.login') }}" title='Login'><img src="../static/images/sign_in.png" /></a>
+<a href="{{ url_for('routes.signup') }}"  title='Register'><img src="../static/images/user_plus.png" /></a>
+{% endif %}
+<a href='#' onclick='window.history.back()' title='Go Back'><img src="../static/images/undo.png" /></a>
+<a href='#' onclick='window.history.forward()'  title='Forward'><img src="../static/images/redo.png" /></a>
+<a href='#' onClick='document.location.reload(true)'  title='Refresh'><img src="../static/images/refresh.png" /></a>
+</div>
+</div>
+</div>
+<div id="contentwrapper">
+<div id="contentcolumn">
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.get("/setting",function(res){
+            $("#header").html(res); 
+        }); 
+    });
+</script>

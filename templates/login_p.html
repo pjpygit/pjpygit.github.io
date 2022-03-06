@@ -1,0 +1,92 @@
+<base target="_parent">
+
+<link href="../static/icon.css" rel="stylesheet">
+<style>
+#login {
+  width: 400px;
+  text-align: center;
+  #background: #d5e4ed;;
+  margin: 2px auto;
+  overflow: hidden;
+}
+
+input {
+	width: 310px;
+  	height: 35px !important;
+  	border: 1px solid #dee0e4;
+  	padding: 0 15px;
+}
+input:focus {
+  border: 1px solid #dee0e4;
+}
+input[type=submit] {
+  width: 350px;
+  background: #3274d6 !important;
+  height: 50px !important;
+  font-family: georgia !important;
+  font-size: 16px !important;
+  color: #ffffff !important;
+  border: 1px solid #3274d6 !important;
+  font-weight: bold;
+}
+input[type=submit]:hover {
+	background: #00326e !important;
+	}	
+
+#login form label {
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	width: 50px;
+  	height: 50px;
+  	background-color: #3274d6;
+  	color: #ffffff;
+}
+
+#loginform {
+  background-color: #ffffff;
+  margin: 0 auto;
+  font-family: georgia;
+  padding: 10px;
+  width: 400px;
+  min-height:262px;
+}
+</style>
+
+
+
+
+
+<div id="login">
+<form action="/login" method="post" id="loginform">
+<table style="width: 400px; border:0; overflow: hidden;" align="center">
+<tr>
+<td align="center" width="50px" height="50px">
+<label for="user" class="user" title="Username"></label>
+</td>
+<td align="center" valign="middle" width="310px" height="50px">
+<input type="text" name="name" placeholder="Username" id="name" required> 
+</td>
+</tr>
+<tr>
+<td align="center" width="50px" height="50px">
+<label for="password" class="lock" title="Password"></label>
+<br /><br /><br />
+</td>
+<td align="center" valign="middle" width="310px" height="50px">
+<input type="password" name="password" placeholder="Password" id="password" required> 
+<br /><br /><br />
+</td>
+</tr>
+<tr>
+<td style="height:50px; overflow:hidden; " colspan="2" align="center">
+<input type="submit" value="Login" style="width:350px;" name="login">
+</td>
+</tr>
+</table>
+</form>
+	
+    <div style="margin: 30px auto;">
+        Not Registered? <a href="/reg_p" target="_self">Register Here</a> 
+    </div>
+</div>	
