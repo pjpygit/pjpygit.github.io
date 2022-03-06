@@ -1,1 +1,94 @@
-Welcome
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
+
+<link href="../static/main.css" rel="stylesheet">
+<link href="../static/mycss.css" rel="stylesheet">
+<link href="../static/icon.css" rel="stylesheet">
+<link href="../static/modalstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="../static/font-awesome/css/font-awesome.min.css">
+<link rel="icon" href="../static/pj.png" type="image/png" sizes="32x32">
+<link rel="stylesheet" type="text/css" href="../static/twitter.bootstrap.min.css">
+
+<script src="../static/js/351jquery.min.js"></script>
+<script src="../static/js/341jquery.min.js"></script>
+<script src="../static/js/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script></script>
+<script src="../static/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+
+<script src="../static/js/jquery-3.6.0.min.js"></script>
+<script src="../static/js/jquery-git.js"></script>
+<script src="../static/js/twitter.bootstrap.min.js"></script>
+</head>
+<body>
+{% if 'logged_in' in session %}
+<div id="maincontainer">
+<div id="contentwrapper">
+<div id="contentcolumn">
+<h3>You are already login by username: {{session['username']}}</h3>
+      <a class="nav-link" href="/logout">Click Here To Logout Before Login Again</a>
+	  <br /> <br />
+	  You are redirected to your profile after 5 seconds. or <a href="/profile">Click Here</a>
+	  
+<script type = "text/javascript">
+         <!--
+            function Redirect() {
+               window.location = "/profile";
+            }            
+            document.write("");
+            setTimeout('Redirect()', 5000);
+         //-->
+</script>	  
+</div>
+</div>
+</div>	  
+	  
+{% else %}
+
+<style type="text/css">
+#lt {
+position: fixed; 
+top: 0;  
+bottom:0;
+background-image: url("../static/panch_mahabhoot.png");
+background-repeat: no-repeat;
+background-position: center 72%;
+background-size: 602px 130px;
+z-index: 100;
+min-height:100%;
+min-width:600px;
+}
+</style>
+
+<div id="maincontainer">
+<div id="contentwrapper">
+<div id="contentcolumn">
+
+<div style="width: 1100px; margin: 100px auto; margin-left: 50px;" id="lt">
+<div style="width: 600px; margin-left: 10px; float:left;">
+<h2 style="text-align: center;"><strong>Welcome</strong></h2>
+<h2 style="text-align: center;"><strong>to</strong></h2>
+<h2 style="text-align: center;"><span style="font-size: 36pt;"><strong>Doc's</strong></span></h2>
+<h2 style="text-align: center;"><span style="font-size: 23pt;"><strong>Online Consultation Service</strong></span></h2>
+</div>
+<div style="width:430px; margin-right: 10px; float:right;">
+<iframe style="border: none; width:430px; height:400px; overflow:hidden;" scrolling="no" src="/login_p" />
+</div>
+</div>
+
+<div style="clear:both" />
+
+
+</div>
+</div>
+</div>
+{% endif %}
+
+
+
+</body>
+</html>
+
