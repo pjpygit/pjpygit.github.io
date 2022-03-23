@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='icon.css') }}"> 
+<link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}"> 
+
+<div style="width:400px; height: 500px; overflow: hidden; margin: 0 auto;">
+<form action="{{ url_for('register') }}" method="post"enctype="multipart/form-data"  >
+	<table style="width:400px;" align="left">
+	<tr>
+	<td class="label user"></td>
+	<td><input id="username" name="username" type="text" placeholder="Username" />	</td>
+	</tr>
+	<tr>
+	<td class="label at">&nbsp;</td>
+	<td><input id="email" name="email" type="text" placeholder="Email ID" />	</td>
+	</tr>
+	
+	
+	
+	<tr>
+	<td class="label lock">&nbsp;</td>
+	<td><input id="password" name="password" type="password" placeholder="Password" /></td>
+	</tr>
+	
+	
+	<tr>
+	<td colspan="2">
+	<input type="submit"  style="width: 400px;" value="Sign Up">
+	</td>
+	</tr>
+	<tr>
+	<td style="color: red; text-align:center;" colspan="2">{{ msg }} <br /> {{ msge }}</td>
+	</tr>
+	
+	
+	</table>
+	</form>
+	</div>

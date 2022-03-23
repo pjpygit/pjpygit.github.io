@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='icon.css') }}"> 
+<link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}"> 
+
+<div style="width:400px; height: 500px; overflow: hidden; margin: 0 auto;">
+<form action="{{ url_for('complete_profile') }}" method="post"enctype="multipart/form-data"  >
+	<table style="width:400px;" align="left">
+	 {% for row in account %}    
+	<tr style="height:0; display: none;">
+	<td class="label dove"></td>
+	
+	<td>
+	<input id="id" name="id" type="text" value="{{ row['id'] }}" />
+	<input id="user" name="username" type="text" value="{{ row['username'] }}" />
+	<input id="password" name="password" type="text" value="{{ row['password'] }}" />
+	<input id="email" name="email" type="text" value="{{ row['email'] }}" />
+	</td>	
+	</tr>
+	{% endfor %}
+	
+	
+	
+	
+	
+	
+	
+	<tr>
+	<td class="label dove"></td>
+	<td><input id="fullname" name="fullname" type="text" placeholder="Full name" /></td>	</tr>
+	
+	<tr>
+	<td class="label age"></td>
+	<td><input id="age" name="age" type="text" placeholder="Age" /></td>	</tr>
+	
+	 
+	<tr>
+	<td class="label gender">&nbsp;</td>
+	<td>	<input type="radio" name="gender" value="male"> Male &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+			<input type="radio" name="gender" value="female"> Female
+	</td>
+	</tr>
+	<tr>
+	<td class="label contact">&nbsp;</td>
+	<td><input id="contact" name="contact" type="text" placeholder="Contact" />	</td>
+	</tr>
+	<tr>
+	<td class="label address">&nbsp;</td>
+	<td><input id="address" name="address" type="text" placeholder="Address" />	</td>
+	</tr>
+	<tr>
+	<td colspan="2">
+	<input type="file" id="myfile" name="file">
+	</td>
+	</tr>
+	<tr>
+	<td colspan="2">
+	<input type="submit"  style="width: 400px;" value="Submit Profile Data">
+	</td>
+	</tr>
+	<tr>
+	<td style="color: red; text-align:center;" colspan="2">{{ msgpr }}</td>
+	</tr>
+	
+	
+	</table>
+	</form>
+	</div>

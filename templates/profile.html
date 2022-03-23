@@ -1,107 +1,55 @@
-{% include 'header.html' %}
+{% include "header.html"%}
+{{ msgpr }}
+<table style="width:700px;" align="center">
+<thead>
+</thead>
+<tbody>
+ {% for row in users %}  
 
-<style type="text/css">
-.main{
-width: 1100px; /*Width of main container*/
-margin: 0 auto; /*Center container on page*/
-background: #d5e4ed;
-}
-
-.content{
-float: left;
-width: 100%;
-background: #d5e4ed;
-}
-
-.middle{
-margin: 0 300px 0 250px; /*Margins for content column. Should be "0 RightColumnWidth 0 LeftColumnWidth*/
-text-align: left;
-padding-left: 20px;
-background: #d5e4ed;
-}
-
-.left{
-float: left;
-width: 250px; /*Width of left column in pixel*/
-margin-left: -1100px; /*Set margin to that of -(MainContainerWidth)*/
-height: 150px;
-background: #d5e4ed;
-}
-
-.right{
-float: left;
-width: 300px; /*Width of right column*/
-margin-left: -300px; /*Set left margin to -(RightColumnWidth)*/
-background: #accde0;
-min-height: 150px;
-}
-</style>
+<tr>
+<td rowspan="8" width="200">
+<a href="../static/uploads/{{ row['photo'] }}">
+<img src="../static/uploads/{{ row['photo'] }}" height="200" />
+</a>
+</td>
 
 
+<th align="right">Id: </th> <td>{{ row['id'] }}</td>
+</tr>
+<tr>
+<th align="right">Full Name: </th> <td>{{ row['fullname'] }}</td>
+</tr>
+<tr>
+<th align="right">User Name: </th> <td>{{ row['username'] }}</td>
+</tr>
+<tr>
+<th align="right">Email: </th> <td>{{ row['email'] }}</td>
+</tr>
+<tr>
+<th align="right">Age/ Gender: </th> <td>{{ row['age'] }}/ {{ row['gender'] }}</td>
+</tr>
+<tr>
+<th align="right">Contact: </th> <td>{{ row['contact'] }}</td>
+</tr>
+<tr>
+<th align="right">Address: </th> <td>{{ row['address'] }}</td>
+</tr>
+
+</table>
 
 
+<div style="background:#2196EF; height: 35px; width: 1130px;" id="receiver{{ row['id'] }}">	
 
-{% for row in rows %} 
-<h3 class="title">
-Welcome, {{row["full_name"]}}...!
-</h3>
+<div style="display:none;">
 
-
-<div class="main">
-<div class="content">
-<div class="middle">
-ID: {{row["id"]}} <br />
-Name: {{row["full_name"]}} <br />
-Username: {{row["name"]}} <br />
-Email: {{row["email"]}} <br />
-Contact: {{row["contact"]}} <br />
-Address: {{row["address"]}}
+<input type="text" value="{{ row['id'] }}" id="myInput" />
 </div>
-</div>
-<div class="left">
-<img src="../static/uploads/{{row['photo']}}" style="height:150px !important" />
-</div>
-<div class="right">
-New Consultation <br />
-Previous Consultations <br />
-Upload Documents <br />
-Previous Documents <br />
-Pay Consultation Charge <br />
-</div>
+
+<a href="/video_call/{{ row['id']}}">
+<img src="../static/images/video.png" height="30px" /></a>
+</button>
+
+
 </div>
 
 {% endfor %}
-
-<div style="clear: both" />
-<div style="height:50px;">&nbsp; </div>
-
-<div style="width:1100px; margin: 30px auto; height: 35px; padding: 10px 0 0 20px; font-size:18px; text-align: left; color: white; background: #3274D6;">
-Contact Doctor: 
-
-&nbsp; &nbsp; &nbsp; 
-
-
-
-<img src="../static/images/video.png" style="height:22px !important;" />
-
-
-
-
-
-&nbsp; &nbsp; &nbsp; 
-
-<img src="../static/images/whatsapp.png"style="height:25px !important;" title="Whatsapp" onclick="window.open('https://wa.me/917016477141');" />
-
-&nbsp; &nbsp; &nbsp; 
-
-<img src="../static/images/messenger.png" style="height:25px !important;"  title="Facebook Messenger" onclick="window.open('https://m.me/pjoshi235');" />
-
-</div>
-
-
-
-
-
-
-
-<iframe id="chatwin" name="chatwin" src="" style="display:none; width:75%; height:100%; position: absolute; top:0; right:0; border: none;" />

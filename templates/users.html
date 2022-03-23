@@ -1,0 +1,28 @@
+{% include "header.html"%}
+
+<table style="width:1000px;" align="center">
+<thead>
+<tr>
+<th>Id</th>
+<th>Full Name</th>
+
+<th>Age/ Gender</th>
+<th>Contact</th>
+<th>Address</th>
+</tr>
+</thead>
+<tbody>
+ {% for row in rows %}    
+<tr>
+<td><a href="/profile/{{ row['id'] }}">    {{ row['id'] }}</a></td>
+<td>{{ row['fullname'] }}</td>
+
+<td>{{ row['age'] }}/ {{ row['gender'] }}</td>
+<td>{{ row['contact'] }}</td>
+<td>{{ row['address'] }}</td>
+
+</tr>
+{% endfor %}
+</table>
+
+	
