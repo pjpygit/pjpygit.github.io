@@ -1,0 +1,44 @@
+
+#blueblock{
+width: 148px;
+padding: 0 0 0 0;
+margin: 0 0 0 0;
+margin-bottom: 1em;
+font-size: 90%;
+background-color: #0a70ad;
+color: #333;
+}
+
+* html #blueblock{ /*IE 6 only */
+w\idth: 147px; /*Box model bug: 180px minus all left and right paddings for #blueblock */
+}
+
+#blueblock ul{
+list-style: none;
+margin: 0 0 0 0;
+padding:  0 0 0 0;
+border: none;
+}
+
+#blueblock li {
+border-bottom: 1px solid #0a70ad;
+margin: 0;
+}
+
+#blueblock li a{
+display: block;
+padding: 5px 5px 5px 10px;
+background:url("https://live.staticflickr.com//65535//50221348786_6e98968b8e_o.png") no-repeat left top; background-size: 60px 30 px;
+color: #fff;
+text-decoration: none;
+width: 100%;
+}
+
+html>body #blueblock li a{ /*Non IE6 width*/
+width: auto;
+}
+
+#blueblock li a:hover{
+background:url("https://live.staticflickr.com//65535//50221569077_5b5272e5f5_o.png") no-repeat left top; background-size: 60px 30 px;
+color: #fff;
+}
