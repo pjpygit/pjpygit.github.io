@@ -27,7 +27,6 @@
     display: block; }
   .mejs__playlist ul {
     padding: 15px;
-    padding-left: 0 !important;	  
     margin: 0; }
   .mejs__playlist li {
 	font-family: georgia;
