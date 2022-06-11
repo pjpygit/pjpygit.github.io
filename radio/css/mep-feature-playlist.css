@@ -19,7 +19,7 @@
 .mejs__playlist {
   background-color: #0165a3;
   display: none; 
-  max-height: 300px;
+  max-height: 400px;
   overflow-y: auto;
   overflow-x: hidden;
     }
