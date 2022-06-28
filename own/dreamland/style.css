@@ -1,0 +1,132 @@
+html {
+	background: #005fa3;
+	height: -webkit-fill-available;
+}
+
+body{
+margin:0 auto;
+padding:0;
+line-height: 1.5em;
+background: #dcf0ff;
+width: 1130px;
+min-height: 100vh;
+min-height: -webkit-fill-available;
+   font-family: georgia !important;
+}
+
+b{font-size: 110%;}
+em{color: red;}
+
+#maincontainer{
+width: 1130px; /*Width of main container*/
+margin: 0 auto; /*Center container on page*/
+}
+
+#topsection{
+background:#0092e8;
+height: 153px; /*Height of top section*/
+border-bottom: 1px solid #000000;
+}
+
+#topsection h1{
+margin: 0;
+padding-top: 15px;
+}
+
+#contentwrapper{
+float: left;
+width: 100%;
+min-height: 70vh;
+max-height: 70vh;
+}
+
+#contentcolumn{
+margin-right: 250px; /*Set right margin to RightColumnWidth*/
+}
+
+#rightcolumn{
+float: left;
+margin-top:1px;
+width: 250px; /*Width of right column*/
+margin-left: -250px; /*Set left margin to -(RightColumnWidth) */
+background: #99d0fc;
+}
+
+#footer{
+clear: both;
+width: 1130px;
+background: #000000;
+color: #FFF;
+text-align: center;
+padding: 4px 0;
+position: absolute;
+bottom: 0;
+}
+
+#footer a{
+color: #FFFF80;
+}
+
+.innertube{
+margin: 10px; /*Margins for inner DIV inside each column (to provide padding)*/
+margin-top: 0;
+}
+
+/* ####### responsive layout CSS ####### */
+
+@media (max-width: 840px){ /* responsive layout break point */
+	#maincontainer{
+	width: 100%;
+	}
+	
+	#contentwrapper{
+	float: none;
+	}
+	
+	#rightcolumn{
+	float: none;
+	width: 100%;
+	margin-left: 0;
+	}
+	
+	#contentcolumn{
+	margin-right: 0;
+	}
+}
+
+   .tabs {
+	background: linear-gradient(to bottom, #0072b5 0%, #009ffc 100%);
+	font-size: 18px;
+   
+}
+
+
+#lttabs a, .tabs a, .tabs a:visited {
+  background: linear-gradient(to bottom, #0072b5 0%, #009ffc 100%);
+  color: white;
+  padding: 7px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+#lttabs a:hover, .tabs a:hover, .tabs a:active {
+  background: linear-gradient(to bottom, #009ffc 0%, #0072b5 100%);
+  color: black;
+}
+
+.radio a, .tabs a:visited {
+  background: linear-gradient(to bottom, #009ffc 0%, #0072b5 100%);
+  color: white;
+  padding: 7px 0 7px 0;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+}
+
+.radio a:hover, .radio a:active {
+  background: linear-gradient(to bottom, #0072b5 0%, #009ffc 100%);
+  color: black;
+}
