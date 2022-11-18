@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+   
+</head>
+<body>
+    <input type="file" id="fileinput" style="display:none; " onchange="readFile(event)" multiple />
+	<div style="width:100%; height:200px; border: 10px dashed #ccc"
+     ondragover="this.style.borderColor='#0c0';return false;"       
+     ondragleave="this.style.borderColor='#ccc'"       
+     ondrop="getTheFiles(event); return false;"  
+	onclick="document.getElementById('fileinput').click()"
+>Drop Files Here Or Click</div>
+
+<div id="preview"></div>
+
+	
+Files Name: <div id="fileDragName"></div>
+Files Size: <div id="fileDragSize"></div>
+Files Type: <div id="fileDragType"></div>
+<div id="fileDragData" style="width:600px; overflow:hidden;"></div>
+
+<script type="text/javascript">
+function readFile(e) {
+  var files;
+  if (e.target.files) {
+    files=e.target.files
+  } else {
+    files=e.dataTransfer.files
+  }
+  if (files.length==0) {
+    alert('What you dropped is not a file.');
+    return;
+  }
+  for (var i = 0; i < files.length; i++) {
+  
+  document.getElementById('fileDragName').innerHTML += files[i].name+', ';
+  document.getElementById('fileDragSize').innerHTML += files[i].size+', ';
+  document.getElementById('fileDragType').innerHTML += files[i].type+', ';
+  
+  reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById('fileDragData').innerHTML += e.target.result+'<br />';
+	
+	var imgpath = "<img src='";
+	var imgpathe = "' height='80' />";
+	var imglocation = e.target.result;
+	document.getElementById("preview").innerHTML += imgpath+imglocation+imgpathe;
+  }
+  reader.readAsDataURL(files[i]);
+}
+
+}
+
+function getTheFiles(e) {
+  e.target.style.borderColor='#ccc';
+  fileinput.files = e.dataTransfer.files;
+  readFile(event);
+}
+</script>
+  
+  <br /><br /><br /><br />
+  <a href="https://stackoverflow.com/questions/8006715/drag-drop-files-into-standard-html-file-input/63234858#63234858" target="_blank">Source of Tutorial</a>
+</body>
+</html>
