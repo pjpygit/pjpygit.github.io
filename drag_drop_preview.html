@@ -1,9 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-   
+<style type="text/css">
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.noimgfile {
+ background-image: url("https://pjpygit.github.io/filelogo.png");
+ background-repeat: no-repeat;
+ background-size: 75px 75px;
+ width: 75px;
+ height:75px;
+ background-position: center center;
+ color: black
+ vertical-align: middle !important;
+ display: table-cell;
+ text-align:center;
+ float: left;
+}
+</style>   
 </head>
 <body>
+<div class="centered">
     <input type="file" id="fileinput" style="display:none; " onchange="readFile(event)" multiple />
 	<div style="width:100%; height:200px; border: 10px dashed #ccc"
      ondragover="this.style.borderColor='#0c0';return false;"       
@@ -12,13 +34,21 @@
 	onclick="document.getElementById('fileinput').click()"
 >Drop Files Here Or Click</div>
 
-<div id="preview"></div>
+<div id="preview"style="display: table; width:600px; height:200px; overflow:auto;"></div>
 
-	
+<div id="fileDragData" style="width:600px; height:50px;overflow:auto;">	
 Files Name: <div id="fileDragName"></div>
 Files Size: <div id="fileDragSize"></div>
 Files Type: <div id="fileDragType"></div>
-<div id="fileDragData" style="width:600px; overflow:hidden;"></div>
+</div>
+
+<div id="fileDragData" style="width:600px; height:70px;overflow:auto;"></div>
+
+</div>
+
+
+
+
 
 <script type="text/javascript">
 function readFile(e) {
@@ -34,18 +64,38 @@ function readFile(e) {
   }
   for (var i = 0; i < files.length; i++) {
   
+  
+  var ftype = files[i].type.split('/')[1];
+  var fext = files[i].name.split('.')[1];
+  var imgfile = files[i].type.split('/')[0]
+  
+   if ( ftype === null || ftype === undefined ){
+        filefirst = "application";
+    } 
+	else {
+		filefirst = imgfile;
+	}
+  
+  
   document.getElementById('fileDragName').innerHTML += files[i].name+', ';
   document.getElementById('fileDragSize').innerHTML += files[i].size+', ';
-  document.getElementById('fileDragType').innerHTML += files[i].type+', ';
+  document.getElementById('fileDragType').innerHTML += filefirst+', ';
   
   reader = new FileReader();
   reader.onload = function(e) {
     document.getElementById('fileDragData').innerHTML += e.target.result+'<br />';
 	
+	
+	if ( imgfile === "image" ){
 	var imgpath = "<img src='";
-	var imgpathe = "' height='80' />";
+	var imgpathe = "' height='75' />";
 	var imglocation = e.target.result;
 	document.getElementById("preview").innerHTML += imgpath+imglocation+imgpathe;
+	}
+	else {
+		document.getElementById("preview").innerHTML += '<span class="noimgfile"><a href="'+e.target.result+'">'+fext+'<br />file</a></span>';
+	}
+	
   }
   reader.readAsDataURL(files[i]);
 }
@@ -58,8 +108,5 @@ function getTheFiles(e) {
   readFile(event);
 }
 </script>
-  
-  <br /><br /><br /><br />
-  <a href="https://stackoverflow.com/questions/8006715/drag-drop-files-into-standard-html-file-input/63234858#63234858" target="_blank">Source of Tutorial</a>
 </body>
 </html>
