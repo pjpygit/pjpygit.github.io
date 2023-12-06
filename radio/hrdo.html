@@ -4,38 +4,61 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style type="text/css">
 html {background: #99d0fc !important;}  
-body {background: #99d0fc !important;}  
-	
+body{
+margin:0 auto;
+padding:0;
+line-height: 1.5em;
+background: #99d0fc;
+font-face: georgia;
+}
+#main {width:450px; margin:0 auto;}
+#header{
+    width:450px;
+    background: #0082D6 url(https://live.staticflickr.com//65535//50280923786_24536ac10b_o.png) no-repeat; background-size: 363px 138px;
+	height: 123px;
+	overflow: hidden;
+	}
+#content{
+    float: left;
+    width: 100%;
+    margin-top: 0;
+    }
+#left{
+  float: left;
+  width:300px;
+  background: #0165a3;
+  color: #ffffff;
+  margin-top: 0;
+  min-height:430px;
+  overflow: hidden;
+}
+#right{
+float: left;
+   width: 150px; /*Width of left column*/
+   margin-right: 0px; /*Set left margin to -(MainContainerWidth)*/
+   background: #0a70ad;
+   color: #ffffff;
+   padding-left:0px;
+}
+#footer{
+   background: #000000;
+   width:450px;
+   color: #ffffff;
+   text-align: center;
+  }
 .mejs__playlist::-webkit-scrollbar {
          background-image: linear-gradient(to right,#0165a3 50%, transparent 50%,#0a70ad 51%);
 		 width:2px;
     }
-	
+
 .mejs__playlist::-webkit-scrollbar-thumb {
         background-color: black;
         border-radius: 50px;
    } 
-  
- /* ####### responsive layout CSS ####### */
-@media (max-width: 1130px){ /* responsive layout break point */
-  .mejs__playlist li {
-	font-family: georgia;
-    color: #000000 !important;
-    font-size: 25px;
-    margin: 2px 0;
-    list-style-type: none; }
-  
-  .mejs__playlist {
-  background-color: #99d0fc !important;
-  display: none; 
-  max-height: 270px !important;
-  overflow-y: auto;
-  overflow-x: hidden;
-    }
-.mejs__container{background:#00ffff !important;	
+.mejs__container{background:#000000 !important;	}
 </style>   
 
-<link href="https://pjpygit.github.io/radio/css/main.css" rel="stylesheet"></link>
+
 <link href="https://pjpygit.github.io/radio/css/mediaelementplayer.css" rel="stylesheet"></link>
    <link href="https://pjpygit.github.io/radio/css/mep-feature-playlist.css" rel="stylesheet"></link>
     <link href="https://pjpygit.github.io/radio/css/mediaelementplayer.min.css" rel="stylesheet"></link>
@@ -60,18 +83,18 @@ body {background: #99d0fc !important;}
 </div>
 <div style="clear:both" />
 
-<div id="left" style="background: rgb(0, 0, 0); margin-left: 0px; margin-top: -30px;">
-<video autoplay="" class="mediaElementPlaylist" controls="" data-alwaysshowcontrols="true" data-showplaylist="true" height="30" preload="none" src="https://s3.radio.co/se787a5a6f/listen">
+<div id="left" style="background: rgb(0, 0, 0); margin: 1px auto; padding: 15px 0 0 0;width:450px;">
+<video autoplay="" class="mediaElementPlaylist" controls="" data-alwaysshowcontrols="true" data-showplaylist="true" height="30" preload="none" src="">
 
 <source src="https://s3.radio.co/se787a5a6f/listen" title="0: Radio Nayra Atlanta" type="audio/mp3"></source> 	
 <source src="https://streams.radio.co/s8d06d0298/listen" title="00: Radio Nayra Durham" type="audio/mp3"></source> 	
 
 <source src="http://peridot.streamguys.com:7150/Mirchi" title="1: Mirchi Fiji" type="audio/mp3"></source>  
-<source src="http://51.255.235.165:5476/stream" title="2: Mirchi" type="audio/mp3"></source>
-<source src="https://s3.radio.co/se787a5a6f/listen" title="3: Mirchi 2" type="audio/mp3"></source>
-<source src="https://streams.radio.co/s8d06d0298/listen" title="5: Mirchi 4" type="audio/mp3"></source>
-<source src="https://stream.zenolive.com/a2gyqzwpwfeuv.aac" title="5: Hits of Bollywood" type="audio/mp3"></source>
-<source src="https://stream.zenolive.com/kr08sxc2tfeuv.aac" title="6: New Hits of Bollywood" type="audio/mp3"></source>
+<source src="http://51.255.235.165:5476/stream" title="3: Mirchi" type="audio/mp3"></source>
+<source src="https://s3.radio.co/se787a5a6f/listen" title="4: Mirchi 2" type="audio/mp3"></source>
+<source src="https://streams.radio.co/s8d06d0298/listen" title="5: Mirchi 3" type="audio/mp3"></source>
+<source src="https://stream.zenolive.com/a2gyqzwpwfeuv.aac" title="1: Hits of Bollywood" type="audio/mp3"></source>
+<source src="https://stream.zenolive.com/kr08sxc2tfeuv.aac" title="2: New Hits of Bollywood" type="audio/mp3"></source>
 
 <source src="https://mirchiplaylive.akamaized.net/hls/live/2036929/MUM/INDIES64kbps.m3u8" title="7: Mirchi Indies" type="audio/mp3"></source>
 <source src="https://mirchiplaylive.akamaized.net/hls/live/2036929/MUM/MRETRO64kbps.m3u8" title="8: Mirchi Hindi Retro" type="audio/mp3"></source>
@@ -252,7 +275,7 @@ if (navigator.userAgent.match(/Android/i)
                 || navigator.userAgent.match(/iPod/i) 
                 || navigator.userAgent.match(/BlackBerry/i) 
                 || navigator.userAgent.match(/Windows Phone/i)) { 
-    document.getElementByClassName(".mejs__playlist li").style.fontWeight = "normal" ;
+    document.getElementByClassName(".mejs__playlist li").style.fontSize = "14px" ;
    
 }
 // Load CSS file
