@@ -413,11 +413,12 @@ const changeCircles = (circle, frequency) => {
   circle.style.backgroundColor = `rgba(${dataArray[frequency] / 2 + 30}, ${dataArray[frequency] / 3}, 255, 1)`;
   // circle.style.transform = `translate(-${dataArray[frequency]}px, ${dataArray[frequency]}px)`;
   circle.style.borderRadius = generateBorderRadius();
-  circle.style.borderWidth = "10px";
+  circle.style.borderWidth = "5px";
   plate.style.height = `calc(${dataArray[frequency] / 3}px)`;
   plate.style.width = `calc(${dataArray[frequency] / 3}px)`;
   circleHigh.style.backgroundColor = `rgba(80, 190, 255, 1)`;
   circleMedium.style.backgroundColor = `rgba(0, 230, 80, 1)`;
+  circleLow.style.backgroundColor = `rgba(50, 50, 55, 1)`;
 };
 
 const resetBorder = (...circles) => {
