@@ -260,8 +260,8 @@ ddequalcolumns.dotask(window, function(){if (typeof ddequalcolumns.timer!="undef
 :root{
 	--background-color: #181F2A;
 	--border-color: #bbdefb;
-	--low-circle-color: rgba(255, 0, 0, 1);
-	--medium-circle-color: rgba(255, 255, 0, 1);
+	--low-circle-color: rgba(255, 255, 0, 1);
+	--medium-circle-color: rgba(255, 0, 0, 1);
 	--high-circle-color: rgba(0, 0, 255, 1);
 }
 
@@ -278,7 +278,7 @@ ddequalcolumns.dotask(window, function(){if (typeof ddequalcolumns.timer!="undef
 #plate{
 	width: 25px;
 	height: 25px;
-	background: url('2.gif');
+	background: url('https://pjpygit.github.io/radio/css/2.gif');
 	background-size: cover;
 	background-position: center;
 	border: 1px solid transparent;
@@ -312,14 +312,14 @@ ddequalcolumns.dotask(window, function(){if (typeof ddequalcolumns.timer!="undef
 
 .circle:nth-child(1){
 	height: 20px;
-	background-color: red;
-	border: 1px solid red;
+	background-color: yellow;
+	border: 1px solid yellow;
 }
 
 .circle:nth-child(2){
 	height: 45px;
 	background-color: var(--medium-circle-color);
-	border: 1px solid yellow;
+	border: 1px solid red;
 }
 
 
@@ -416,7 +416,8 @@ const changeCircles = (circle, frequency) => {
   circle.style.borderWidth = "10px";
   plate.style.height = `calc(${dataArray[frequency] / 3}px)`;
   plate.style.width = `calc(${dataArray[frequency] / 3}px)`;
-  
+  circleHigh.style.backgroundColor = `rgba(80, 190, 255, 1)`;
+  circleMedium.style.backgroundColor = `rgba(0, 230, 80, 1)`;
 };
 
 const resetBorder = (...circles) => {
@@ -511,7 +512,7 @@ if (navigator.userAgent.match(/Android/i)
                 || navigator.userAgent.match(/iPod/i) 
                 || navigator.userAgent.match(/BlackBerry/i) 
                 || navigator.userAgent.match(/Windows Phone/i)) { 
-    document.getElementByClassName(".mejs__playlist li").style.fontSize = "12px" ;
+    document.getElementByClassName(".mejs__playlist li").style.fontSize = "50px" ;
    
 }
 // Load CSS file
