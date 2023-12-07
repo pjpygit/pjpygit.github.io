@@ -33,12 +33,13 @@ font-face: georgia;
   overflow: hidden;
 }
 #right{
-float: left;
+   float: right;
    width: 150px; /*Width of left column*/
    margin-right: 0px; /*Set left margin to -(MainContainerWidth)*/
    background: #0a70ad;
    color: #ffffff;
-   padding-left:0px;
+   padding-right:0px;
+   bottom:0;
 }
 #footer{
    background: #000000;
@@ -48,11 +49,11 @@ float: left;
   }
 .mejs__playlist::-webkit-scrollbar {
          background-image: linear-gradient(to right,#0165a3 50%, transparent 50%,#0a70ad 51%);
-		 width:2px;
+		 width:10px;
     }
 
 .mejs__playlist::-webkit-scrollbar-thumb {
-        background-color: black;
+        background-color: #99d0fc;
         border-radius: 50px;
    } 
 .mejs__container{background:#000000 !important;	}
@@ -66,6 +67,52 @@ float: left;
     <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://pjpygit.github.io/radio/js/mediaelement-and-player.min.js"></script>
     <script src="https://pjpygit.github.io/radio/js/mep-feature-playlist.js"></script>
+
+<script>
+//** Dynamic Drive Equal Columns Height script v1.01 (Nov 2nd, 06)
+//** http://www.dynamicdrive.com/style/blog/entry/css-equal-columns-height-script/
+
+var ddequalcolumns=new Object()
+//Input IDs (id attr) of columns to equalize. Script will check if each corresponding column actually exists:
+ddequalcolumns.columnswatch=["left", "right"]
+
+ddequalcolumns.setHeights=function(reset){
+var tallest=0
+var resetit=(typeof reset=="string")? true : false
+for (var i=0; i<this.columnswatch.length; i++){
+if (document.getElementById(this.columnswatch[i])!=null){
+if (resetit)
+document.getElementById(this.columnswatch[i]).style.height="auto"
+if (document.getElementById(this.columnswatch[i]).offsetHeight>tallest)
+tallest=document.getElementById(this.columnswatch[i]).offsetHeight
+}
+}
+if (tallest>0){
+for (var i=0; i<this.columnswatch.length; i++){
+if (document.getElementById(this.columnswatch[i])!=null)
+document.getElementById(this.columnswatch[i]).style.height=tallest+"px"
+}
+}
+}
+
+ddequalcolumns.resetHeights=function(){
+this.setHeights("reset")
+}
+
+ddequalcolumns.dotask=function(target, functionref, tasktype){ //assign a function to execute to an event handler (ie: onunload)
+var tasktype=(window.addEventListener)? tasktype : "on"+tasktype
+if (target.addEventListener)
+target.addEventListener(tasktype, functionref, false)
+else if (target.attachEvent)
+target.attachEvent(tasktype, functionref)
+}
+
+ddequalcolumns.dotask(window, function(){ddequalcolumns.setHeights()}, "load")
+ddequalcolumns.dotask(window, function(){if (typeof ddequalcolumns.timer!="undefined") clearTimeout(ddequalcolumns.timer); ddequalcolumns.timer=setTimeout("ddequalcolumns.resetHeights()", 200)}, "resize")
+</script>
+
+
+
 	
 </head>
 <body>
@@ -83,8 +130,9 @@ float: left;
 </div>
 <div style="clear:both" />
 
-<div id="left" style="background: rgb(0, 0, 0); margin: 1px auto; padding: 15px 0 0 0;width:450px;">
-<video autoplay="" class="mediaElementPlaylist" controls="" data-alwaysshowcontrols="true" data-showplaylist="true" height="30" preload="none" src="">
+<div style="float:left; width:450px;">
+<div id="left" style="position:relative; z-index: 100000; background: rgb(0, 0, 0); margin: 1px auto; padding: 15px 0 0 0;">
+<video id="audio" autoplay="" class="mediaElementPlaylist" controls="" data-alwaysshowcontrols="true" data-showplaylist="true" height="30" preload="none" src="">
 
 <source src="https://s3.radio.co/se787a5a6f/listen" title="0: Radio Nayra Atlanta" type="audio/mp3"></source> 	
 <source src="https://streams.radio.co/s8d06d0298/listen" title="00: Radio Nayra Durham" type="audio/mp3"></source> 	
@@ -204,16 +252,204 @@ float: left;
 <source src="https://samcloud.spacial.com/api/listen?sid=124642&amp;rid=261558&amp;f=aac,any&amp;br=64000,any&amp;m=sc" title="98: Sheetal Sangeet Gujarati" type="audio/mp3"></source>
 <source src="http://s9.voscast.com:7402/stream/1/" title="99: Rangilo Gujarat" type="audio/mp3"></source>
 
-
-
-
-  
-  
-  
-  
-
-  </video>
+</video>
 </div>
+
+<div id="right" style="position:relative; z-index:1500000;">
+<style>
+:root{
+	--background-color: #181F2A;
+	--border-color: #bbdefb;
+	--low-circle-color: rgba(255, 0, 0, 1);
+	--medium-circle-color: rgba(255, 255, 0, 1);
+	--high-circle-color: rgba(0, 0, 255, 1);
+}
+
+
+
+.plane-block{
+	height: 150px;
+	aspect-ratio: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#plate{
+	width: 25px;
+	height: 25px;
+	background: url('2.gif');
+	background-size: cover;
+	background-position: center;
+	border: 1px solid transparent;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	animation: spinPlate 15s linear infinite;
+	animation-play-state: paused;
+}
+
+#plate::before{
+	content:'';
+	width: 7px;
+	height: 7px;
+	position: absolute;
+	background: var(--background-color);
+	border-radius: 50%;
+	border: 1px solid transparent;
+}
+
+.circle{
+	position: absolute;
+	min-height: 50px;
+	max-height: 150px;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	z-index: -1;
+	transition: border-radius .3s;
+}
+
+.circle:nth-child(1){
+	height: 20px;
+	background-color: red;
+	border: 1px solid red;
+}
+
+.circle:nth-child(2){
+	height: 45px;
+	background-color: var(--medium-circle-color);
+	border: 1px solid yellow;
+}
+
+
+.circle:nth-child(3){
+	height: 100px;
+	background-color: var(--high-circle-color);
+	border: 1px solid blue;
+}
+
+#plate:hover{
+	cursor: pointer;
+}
+
+@keyframes spinPlate {
+	to{
+		transform: rotate(360deg);
+	}
+}
+</style>
+
+<div class="plane-block">
+	<div class="circle" id="lowCircle"></div>
+	<div class="circle" id="mediumCircle"></div>
+	<div class="circle" id="highCircle"></div>
+	<div id="plate">
+	</div>
+</div>
+<script>
+let context, analyser, dataArray;
+const circleLow = document.getElementById('lowCircle');
+const circleMedium = document.getElementById('mediumCircle');
+const circleHigh = document.getElementById('highCircle');
+
+const audio = document.getElementById('audio');
+audio.crossOrigin = "anonymous";
+
+const plate = document.getElementById('plate');
+
+const togglePlayer = () => {
+  if (!context) {
+    preparation();
+  }
+  if (audio.paused) {
+    playAudio();
+  } else {
+    playAudio();
+  }
+};
+
+const playAudio = () => {
+  audio.play();
+  loop();
+  plate.style.animationPlayState = 'running';
+};
+
+const pauseAudio = () => {
+  audio.pause();
+  plate.style.animationPlayState = 'paused';
+};
+
+const preparation = () => {
+  context = new AudioContext();
+  analyser = context.createAnalyser();
+  const src = context.createMediaElementSource(audio);
+  src.connect(analyser);
+  analyser.connect(context.destination);
+  loop();
+};
+
+const loop = () => {
+  if (audio.paused) {
+    return;
+  }
+
+  window.requestAnimationFrame(loop);
+
+  dataArray = new Uint8Array(analyser.frequencyBinCount);
+  analyser.getByteFrequencyData(dataArray);
+
+  changeCircles(circleLow, 10);
+  changeCircles(circleMedium, 20);
+  changeCircles(circleHigh, 40);
+
+  setTimeout(() => {
+    resetBorder(circleLow, circleMedium, circleHigh);
+  }, 100);
+};
+
+const changeCircles = (circle, frequency) => {
+  circle.style.height = `calc(10px + ${dataArray[frequency] / 2}px)`;
+  circle.style.backgroundColor = `rgba(${dataArray[frequency] / 2 + 30}, ${dataArray[frequency] / 3}, 255, 1)`;
+  // circle.style.transform = `translate(-${dataArray[frequency]}px, ${dataArray[frequency]}px)`;
+  circle.style.borderRadius = generateBorderRadius();
+  circle.style.borderWidth = "10px";
+  plate.style.height = `calc(${dataArray[frequency] / 3}px)`;
+  plate.style.width = `calc(${dataArray[frequency] / 3}px)`;
+  
+};
+
+const resetBorder = (...circles) => {
+  circles.forEach(circle => circle.style.borderRadius = '50%');
+};
+
+const generateBorderRadius = () => {
+  const randomizeAngle = () => Math.floor(Math.random() * (85 - 15) + 15);
+
+  const top = randomizeAngle();
+  const bottom = randomizeAngle();
+  const left = randomizeAngle();
+  const right = randomizeAngle();
+
+  return `${top}% ${70 - top}% ${bottom}% ${70 - bottom}% / ${left}% ${right}% ${70 - right}% ${70 - left}%`;
+};
+
+
+let vid = document.getElementById("audio");
+vid.addEventListener("play", togglePlayer);
+
+plate.addEventListener('click', togglePlayer);
+</script>
+
+
+
+</div>
+</div>
+
+
+
+
+
 </div>  
  
   
@@ -275,7 +511,7 @@ if (navigator.userAgent.match(/Android/i)
                 || navigator.userAgent.match(/iPod/i) 
                 || navigator.userAgent.match(/BlackBerry/i) 
                 || navigator.userAgent.match(/Windows Phone/i)) { 
-    document.getElementByClassName(".mejs__playlist li").style.fontSize = "14px" ;
+    document.getElementByClassName(".mejs__playlist li").style.fontSize = "12px" ;
    
 }
 // Load CSS file
