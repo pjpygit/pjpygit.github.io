@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="UTF-8">  
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #0a70ad;
+  color: #3d143d;
+  font-family: sans-serif;
+  font-size: 1.5em;
+  height: 100%;
+}
+
+.player {
+  padding: 10px;
+}
+.equalizer {
+  display: flex;
+  height: 220px;
+  transform: scaleY(-1);
+  width: 200px;
+  overflow: hidden;
+  background: #000000;
+}
+.vertical {
+  height: 0px;
+  width: 10px;
+  margin: 5px; 
+  border-radius: 15px;
+  transition: all 0.01s;
+  transition-timing-function: ease-in-out;
+}
+
+</style>
+</head>
+<body>
+     <div class="equalizer" id="equalizer">
+      <div id="col1" class="vertical"></div>
+      <div id="col2" class="vertical"></div>
+      <div id="col3" class="vertical"></div>
+      <div id="col4" class="vertical"></div>
+      <div id="col5" class="vertical"></div>
+      <div id="col6" class="vertical"></div>
+      <div id="col7" class="vertical"></div>
+      <div id="col8" class="vertical"></div>
+      <div id="col9" class="vertical"></div>
+      <div id="col10" class="vertical"></div>
+  </div>
+<br />
+
+ <video id="audio" autoplay="autoplay" class="mediaElementPlaylist" controls="" data-alwaysshowcontrols="true" data-showplaylist="true" width="200" height="130" preload="none" src="https://s3.radio.co/se787a5a6f/listen" type="audio/mp3">
+</video>
+  
+<script>
+function updateEqualizer(analyser, buffer, columns) {
+  analyser.getByteFrequencyData(buffer);
+  for (let i = 0; i < columns.length; i += 1) {
+    let column = columns[i];
+    const height = buffer[i] / 255 * 150;
+	
+	const bgred = buffer[i];
+	const bggreen = buffer[i];
+	const bgblue = buffer[i];
+	
+    column.setAttribute("style", `height: ${height}px`);
+
+document.getElementById('col1').style.backgroundColor =  "rgb("+ (bgred - 20) + ',' + (bggreen + 20 ) + ',' + (bgblue +30) +")";
+document.getElementById('col2').style.backgroundColor =  "rgb("+ (bgred +100) + ',' + (bggreen) + ',' + (bgblue) +")";
+document.getElementById('col3').style.backgroundColor =  "rgb("+ (bgred +30 ) + ',' + (bggreen + 50) + ',' + (bgblue +50) +")";
+document.getElementById('col4').style.backgroundColor =  "rgb("+ (bgred) + ',' + (bggreen) + ',' + (bgblue) +")";
+document.getElementById('col5').style.backgroundColor =  "rgb("+ (bgred/5 + 50) + ',' + (bggreen) + ',' + (bgblue + 70) +")";
+document.getElementById('col6').style.backgroundColor =  "rgb("+ (bgred + 50) + ',' + (bggreen + 20) + ',' + (bgblue + 30) +")";
+document.getElementById('col7').style.backgroundColor =  "rgb("+ (bgred/2 + 50) + ',' + (bggreen + 70) + ',' + (bgblue + 70) +")";
+document.getElementById('col8').style.backgroundColor =  "rgb("+ (bgred/2 + 50) + ',' + (bggreen/2 + 60) + ',' + (bgblue + 30) +")";
+document.getElementById('col9').style.backgroundColor =  "rgb("+ (bgred ) + ',' + (bggreen + 40) + ',' + (bgblue + 70) +")";
+document.getElementById('col10').style.backgroundColor =  "rgb("+ (bgred + 50) + ',' + (bggreen + 40) + ',' + (bgblue + 30) +")";
+ }
+}
+
+// instigate our audio context
+let audioElement = document.getElementById('audio');
+audioElement.crossOrigin = "anonymous";
+audioElement.src = audioElement.src;
+
+audioElement.addEventListener(
+"loadedmetadata",
+event => {
+  // for cross browser
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  const audioCtx = new AudioContext();
+
+  // load some sound
+  const track = audioCtx.createMediaElementSource(audioElement);
+  const playButton = document.querySelector("button");
+
+  // play pause audio
+  audioElement.addEventListener(
+  "onplay",
+  function () {
+    // check if context is in suspended state (autoplay policy)
+    if (audioCtx.state === "suspended") {
+      audioCtx.resume();
+    }
+
+    if (this.dataset.playing === "false") {
+      audioElement.play();
+      this.dataset.playing = "true";
+      // if track is playing pause it
+    } else if (this.dataset.playing === "true") {
+      audioElement.pause();
+      this.dataset.playing = "false";
+    }
+
+    let state = this.getAttribute("aria-checked") === "true" ? true : false;
+    this.setAttribute("aria-checked", state ? "false" : "true");
+  },
+  false);
+
+
+  // initialize gain
+  let gainNode = audioCtx.createGain();
+
+  // initialize analyser
+  let analyser = audioCtx.createAnalyser();
+  analyser.fftSize = 64; //32 bins
+  const frequencyBinsCount = analyser.frequencyBinCount;
+  let buffer = new Uint8Array(frequencyBinsCount);
+  track.connect(gainNode).connect(analyser).connect(audioCtx.destination);
+
+  // equalizer animation
+  const equalizer = document.getElementById("equalizer");
+  // 32 bins -> 32 columns
+  const columns = document.getElementsByClassName("vertical");
+  setInterval(updateEqualizer, 16, analyser, buffer, columns);
+},
+false);
+</script>
+</body>
+</html>
