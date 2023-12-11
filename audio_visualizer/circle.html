@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+html {background: #000000 !important;}  
+body{
+margin:0 auto;
+padding:0;
+line-height: 1.5em;
+background: #000000;
+font-face: georgia;
+}
+#main {width:450px; margin:0 auto;}
+
+
+.plane-block{
+	height: 400px;
+	aspect-ratio: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.circle{
+	position: absolute;
+	min-height: 25px;
+	max-height: 350px;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	z-index: -1;
+	transition: border-radius .3s;
+}
+
+.circle:nth-child(1){
+	height: 25;
+	border: 1px groove purple;
+	background: radial-gradient(closest-side, red,orange,yellow,green,blue,indigo,violet,#00c8ff) no-repeat;
+	background-position: center;
+	z-index: 11;
+	animation: spinPlate 10s linear infinite;
+}
+
+.circle:nth-child(2){
+	height: 50px;
+	background-image: radial-gradient(closest-side, violet,indigo,yellow,green,blue,orange,cyan,blue);
+	border: 1px groove indigo;
+	z-index: 10;
+	animation: spinPlate 10s linear infinite;
+	animation-direction:reverse;
+}
+
+.circle:nth-child(3){
+	height: 75px;
+	background: radial-gradient(closest-side, red,orange,yellow,green,blue,indigo,violet,pink);
+	border: 1px groove #ffffff;
+	z-index: 9;
+	animation: spinPlate 10s linear infinite;
+}
+
+.circle:nth-child(4){
+	height: 100px;
+	background: radial-gradient(closest-side, red,orange,green,blue,indigo,violet,yellow);
+	border: 1px groove #000000;
+	z-index: 8;
+	animation: spinPlate 10s linear infinite;
+	animation-direction:reverse;
+}
+.circle:nth-child(5){
+	height: 125px;
+	background-color: #efdede;
+	border: 1px groove #00c8ff;
+	z-index: 7;
+	animation: spinPlate 10s linear infinite;
+}
+.circle:nth-child(7){
+	height: 150px;
+	background-color: #26d3ff;
+	border: 1px groove #e8e474;
+	z-index: 6;
+	animation: spinPlate 10s linear infinite;
+	animation-direction:reverse;
+}
+.circle:nth-child(8){
+	height: 175px;
+	background-image: radial-gradient(closest-side, violet,indigo,yellow,black,blue,red,violet,blue);
+	border: 1px groove #ff9000;
+	z-index: 5;
+	animation: spinPlate 10s linear infinite;
+	
+}
+
+.circle:nth-child(9){
+	height: 200px;
+	border: 1px groove #FF1493;
+	z-index: 4;
+	background-image: radial-gradient(closest-side, violet,indigo,yellow,green,aqua,violet,purple);
+	animation: spinPlate 10s linear infinite;
+	animation-direction:reverse;
+}
+
+#c9::before, #c9::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #e6fb04, #ff6600, #00ff66, #00ffff, #ff00ff, #ff0099, #6e0dd0, #ff3300, #099fff);
+  background-size: 400%;
+  width: calc(102% + 0px);
+  height: calc(102% + 0px);
+  z-index: 100;
+  animation: animate 10s linear infinite;
+}
+
+#c9::after {
+  filter: blur(50px);
+  opacity: 1;
+}
+
+
+@keyframes animate {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+.glow::after {
+  filter: blur(30px);
+  opacity: 0.95;
+}
+
+
+@keyframes spinPlate {
+	to{
+		transform: rotate(360deg);
+	}
+}
+
+</style>
+
+</head>
+<body>
+<div id="main">
+
+<div id="asdf" style="background:#000000;color:white;font-size:24px;">
+Audio Frequency: <span id="freq"></span>
+
+<div class="plane-block" id="plane-block">
+	<div class="circle" id="c1"></div>
+	<div class="circle" id="c2"></div>
+	<div class="circle" id="c3"></div>
+	<div class="circle" id="c4"></div>
+	<div class="circle" id="c5"></div>	
+	<div class="circle" id="c6"></div>
+	<div class="circle" id="c7"></div>
+	<div class="circle" id="c8"></div>
+	<div class="circle" id="c9"></div>
+<div id="plate" style="display:none;">
+</div>
+</div>
+<br />
+<video id="audio" autoplay="autoplay" controls="controls" width="400" height="75" style="background: white;border-bottom: 2px solid white;" preload="none" src="https://s3.radio.co/se787a5a6f/listen" type="audio/mp3">
+</video>
+</div>
+  Example on codepen: https://codepen.io/KACTOPKA/pen/gOdZYaX
+</div>
+<script>
+let context, analyser, dataArray;
+const c1 = document.getElementById('c1');
+const c2 = document.getElementById('c2');
+const c3 = document.getElementById('c3');
+const c4 = document.getElementById('c4');
+const c5 = document.getElementById('c5');
+const c6 = document.getElementById('c6');
+const c7 = document.getElementById('c7');
+const c8 = document.getElementById('c8');
+const c9 = document.getElementById('c9');
+
+const audio = document.getElementById('audio');
+audio.crossOrigin = "anonymous";
+
+const plate = document.getElementById('plate');
+const asdf = document.getElementById('asdf');
+
+const togglePlayer = () => {
+  if (!context) {
+    preparation();
+  }
+  if (audio.paused) {
+    playAudio();
+  } else {
+    playAudio();
+  }
+};
+
+const playAudio = () => {
+  audio.play();
+  loop();
+  asdf.style.display = 'block';
+  plate.style.animationPlayState = 'running';
+};
+
+const pauseAudio = () => {
+  audio.pause();
+  plate.style.animationPlayState = 'paused';
+};
+
+const preparation = () => {
+  context = new AudioContext();
+  analyser = context.createAnalyser();
+  const src = context.createMediaElementSource(audio);
+  src.connect(analyser);
+  analyser.connect(context.destination);
+  loop();
+};
+
+const loop = () => {
+  if (audio.paused) {
+    return;
+  }
+
+  window.requestAnimationFrame(loop);
+
+  dataArray = new Uint8Array(analyser.frequencyBinCount);
+  analyser.getByteFrequencyData(dataArray);
+
+  changeCircles(c1, 10);
+  changeCircles(c2, 50);
+  changeCircles(c3, 75);
+  changeCircles(c4, 100);
+  changeCircles(c5, 125);
+  changeCircles(c6, 150);
+  changeCircles(c7, 200);
+  changeCircles(c8, 250);
+  changeCircles(c9, 300);
+  
+  setTimeout(() => {
+    resetBorder(c1, c2, c3, c4, c5, c6, c7, c8, c9);
+  }, 10);
+};
+
+const changeCircles = (circle, frequency) => {
+	document.getElementById('c1').style.height = `calc(20px + ${dataArray[frequency] / 4}px)`;
+	document.getElementById('c2').style.height = `calc(20px + ${dataArray[frequency] / 4}px)`;
+	document.getElementById('c3').style.height = `calc(30px + ${dataArray[frequency] / 3}px)`;
+	document.getElementById('c4').style.height = `calc(30px + ${dataArray[frequency] / 2}px)`;
+	document.getElementById('c5').style.height = `calc(50px + ${dataArray[frequency] / 2}px)`;
+	document.getElementById('c6').style.height = `calc(50px + ${dataArray[frequency] / 2}px)`;
+	document.getElementById('c7').style.height = `calc(75px + ${dataArray[frequency] / 2}px)`;
+	document.getElementById('c8').style.height = `calc(150px + ${dataArray[frequency]}px)`;
+	document.getElementById('c9').style.height = `calc(200px + ${dataArray[frequency] }px)`;
+	circle.style.borderWidth = `calc(${dataArray[frequency] / 50}px)`;
+	
+	document.getElementById('c1').style.borderWidth = `calc(${dataArray[frequency] / 15}px)`;
+	document.getElementById('c2').style.borderWidth = `calc(${dataArray[frequency] / 15}px)`;
+	document.getElementById('c3').style.borderWidth = `calc(${dataArray[frequency] / 10}px)`;
+	document.getElementById('c4').style.borderWidth = `calc(${dataArray[frequency] / 15}px)`;
+	document.getElementById('c5').style.borderWidth = `calc(${dataArray[frequency] / 10}px)`;
+	document.getElementById('c6').style.borderWidth = `calc(${dataArray[frequency] / 15}px)`;
+	document.getElementById('c7').style.borderWidth = `calc(${dataArray[frequency] / 10}px)`;
+	document.getElementById('c8').style.borderWidth = `calc(${dataArray[frequency] / 10}px)`;
+	document.getElementById('c9').style.borderWidth = `calc(${dataArray[frequency] / 10}px)`;
+		
+	
+	document.getElementById('freq').innerHTML = `${dataArray[frequency]}`;
+};
+
+const resetBorder = (...circles) => {
+  circles.forEach(circle => circle.style.borderRadius = '50%');
+};
+
+const generateBorderRadius = () => {
+  const randomizeAngle = () => Math.floor(Math.random() * (85 - 15) + 15);
+
+  const top = randomizeAngle();
+  const bottom = randomizeAngle();
+  const left = randomizeAngle();
+  const right = randomizeAngle();
+
+  return `${top}% ${70 - top}% ${bottom}% ${70 - bottom}% / ${left}% ${right}% ${70 - right}% ${70 - left}%`;
+};
+
+let vid = document.getElementById("audio");
+vid.addEventListener("play", togglePlayer);
+
+plate.addEventListener('click', togglePlayer);
+</script>
+
+</body>
+</html>
