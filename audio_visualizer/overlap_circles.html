@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.circles {
+  display: flex;
+  height: 250px;
+  margin-top: 50px;
+}
+
+.circle {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+}
+
+.circle:first-child {
+  background: #c32248;
+}
+
+.circle:nth-child(2) {
+  background: #00bf46;
+  transform: translate(-75%);
+  z-index: 2;
+  margin-top: -50px;
+}
+
+.circle:nth-child(3) {
+  background: #00b2ff;
+  transform: translate(-150%);
+  z-index: 3;
+}
+
+    </style>
+   
+</head>
+<body>
+    <div class="circles">
+  <div id="lowCircle" class="circle"></div>
+  <div id="mediumCircle" class="circle"></div>
+  <div id="highCircle" class="circle"></div>
+</div>
+<div id="plate" style="">Click</div>
+<audio id="audio" controls src="https://s3.radio.co/se787a5a6f/listen" type="audio/mp3">
+</audio>
+
+<script type="text/javascript">
+let context, analyser, dataArray;
+const circleLow = document.getElementById('lowCircle');
+const circleMedium = document.getElementById('mediumCircle');
+const circleHigh = document.getElementById('highCircle');
+
+const audio = document.getElementById('audio');
+audio.crossOrigin = "anonymous";
+
+const plate = document.getElementById('plate');
+
+const togglePlayer = () => {
+  if (!context) {
+    preparation();
+  }
+  if (audio.paused) {
+    playAudio();
+  } else {
+    pauseAudio();
+  }
+};
+
+const playAudio = () => {
+  audio.play();
+  loop();
+  plate.style.animationPlayState = 'running';
+};
+
+const pauseAudio = () => {
+  audio.pause();
+  plate.style.animationPlayState = 'paused';
+};
+
+const preparation = () => {
+  context = new AudioContext();
+  analyser = context.createAnalyser();
+  const src = context.createMediaElementSource(audio);
+  src.connect(analyser);
+  analyser.connect(context.destination);
+  loop();
+};
+
+const loop = () => {
+  if (audio.paused) {
+    return;
+  }
+
+  window.requestAnimationFrame(loop);
+
+  dataArray = new Uint8Array(analyser.frequencyBinCount);
+  analyser.getByteFrequencyData(dataArray);
+
+  changeCircles(circleLow, 20);
+  changeCircles(circleMedium, 40);
+  changeCircles(circleHigh, 60);
+
+  setTimeout(() => {
+    resetBorder(circleLow, circleMedium, circleHigh);
+  }, 200);
+};
+
+const changeCircles = (circle, frequency) => {
+
+	// circle.style.height = `calc(150px + ${dataArray[frequency] /15}px)`;
+	// circle.style.width = `calc(150px + ${dataArray[frequency]  /15}px)`;
+	
+	circle.style.filter = `brightness(calc( ${dataArray[frequency] }%))`;
+	circle.style.filter = `contrast(calc( ${dataArray[frequency] }%))`;
+	circle.style.filter = `saturate(calc(100 + ${dataArray[frequency] }%))`;
+	
+   // circle.style.backgroundColor = `rgba(${dataArray[frequency] /2}, ${dataArray[frequency] /3}, ${dataArray[frequency] }, .5)`;
+  // circle.style.transform = `translate(${dataArray[frequency]}px, ${dataArray[frequency]}px)`;
+  // circle.style.borderRadius = `calc(50% + ${dataArray[frequency]/20}px)`;
+};
+
+const resetBorder = (...circles) => {
+  circles.forEach(circle => circle.style.borderRadius = '50%');
+};
+
+const generateBorderRadius = () => {
+  const randomizeAngle = () => Math.floor(Math.random() * (85 - 15) + 15);
+
+  const top = randomizeAngle();
+  const bottom = randomizeAngle();
+  const left = randomizeAngle();
+  const right = randomizeAngle();
+
+  return `${top}% ${100 - top}% ${bottom}% ${100 - bottom}% / ${left}% ${right}% ${100 - right}% ${100 - left}%`;
+};
+
+plate.addEventListener('click', togglePlayer);        
+</script>
+</body>
+</html>
