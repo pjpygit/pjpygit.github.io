@@ -49,7 +49,7 @@
 <body>
 <div style="width: 810px; float: left;background: #0a70ad;">
 <div style="background: #0165a3; width: 400px; float: left;">
-<video autoplay=""  id="player" crossorigin="anonymous"  class="mediaElementPlaylist" controls="" data-alwaysshowcontrols="true" data-showplaylist="true" height="50" preload="none" src="http://peridot.streamguys.com:7150/Mirchi">
+<video autoplay=""  id="player" crossorigin="anonymous"  class="mediaElementPlaylist" controls="" data-alwaysshowcontrols="true" data-showplaylist="true" height="50" preload="none" src="">
 <source src="http://peridot.streamguys.com:7150/Mirchi" type="audio/mp3" title="1: Mirchi Fiji">
 <source src="https://stream.zenolive.com/a2gyqzwpwfeuv.aac" type="audio/mp3" title="2: Hits of Bollywood">
 <source src="https://stream.zenolive.com/kr08sxc2tfeuv.aac" type="audio/mp3" title="3: New Hits of Bollywood">
@@ -197,7 +197,7 @@ Frequency for bars: <span id="freq"></span>
         const dataArray = new Uint8Array(bufferLength);
 
         // Set up gradient for bars
-        const gradient = ctx.createLinearGradient(135, 0, 0, canvas.height, canvas.width);
+        const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height, canvas.width);
         gradient.addColorStop(0, getRandomColor());
         gradient.addColorStop(0.20, getRandomColor());
 		gradient.addColorStop(0.40, getRandomColor());
