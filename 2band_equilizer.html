@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <canvas id="myCanvas" width="300" height="150" style="border:1px solid grey"></canvas>
+  <br />
+  <audio id="player" controls crossorigin src="https://streams.radio.co/s8d06d0298/listen" type="audio/mpeg"></audio>
+  <br />
+  <label for="bass">Bass:</label>
+  <input type="range" id="bass" name="bass" min="0" max="200" value="100" />
+  <br />
+  <label for="treble">Treble:</label>
+  <input type="range" id="treble" name="treble" min="0" max="200" value="100" />
+
+  <script>
+    const c = document.getElementById("myCanvas");
+    const ctx = c.getContext("2d");
+
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const analyser = audioContext.createAnalyser();
+    const source = audioContext.createMediaElementSource(document.getElementById('player'));
+    const gainNodeBass = audioContext.createGain();
+    const gainNodeTreble = audioContext.createGain();
+
+    source.connect(analyser);
+    analyser.connect(gainNodeBass);
+    gainNodeBass.connect(gainNodeTreble);
+    gainNodeTreble.connect(audioContext.destination);
+
+    analyser.fftSize = 256;
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    const bassInput = document.getElementById('bass');
+    const trebleInput = document.getElementById('treble');
+
+    function setBassTreble() {
+      const bassValue = bassInput.value;
+      const trebleValue = trebleInput.value;
+
+      gainNodeBass.gain.value = bassValue / 100;
+      gainNodeTreble.gain.value = trebleValue / 100;
+    }
+
+    bassInput.addEventListener('input', setBassTreble);
+    trebleInput.addEventListener('input', setBassTreble);
+
+    function draw() {
+  analyser.getByteFrequencyData(dataArray);
+
+  ctx.clearRect(0, 0, c.width, c.height);
+
+  const barWidth = (c.width / bufferLength) * 0.99;
+  let barHeight;
+  let x = 0;
+
+  for (let i = 0; i < bufferLength; i++) {
+    barHeight = dataArray[i] / 2;
+
+    // Adjust color and size based on gain values
+    const bassColor = Math.round(gainNodeBass.gain.value * 150);
+    const trebleColor = Math.round(gainNodeTreble.gain.value * 150);
+
+    ctx.fillStyle = `rgba(${bassColor}, ${255 - trebleColor}, ${trebleColor}, 1)`;
+    ctx.fillRect(x, c.height - barHeight, barWidth, barHeight);
+
+    x += barWidth + 1;
+  }
+
+  requestAnimationFrame(draw);
+}
+
+
+    // Start drawing loop when the audio is playing
+    document.getElementById('player').addEventListener('play', () => {
+      audioContext.resume().then(() => {
+        draw();
+      });
+    });
+  </script>
+</body>
+
+</html>
