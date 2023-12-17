@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="https://pjpygit.github.io/radio/css/mediaelementplayer.css" rel="stylesheet"></link>
+<link href="https://pjpygit.github.io/radio/css/mep-feature-playlist.css" rel="stylesheet"></link>
+<link href="https://pjpygit.github.io/radio/mediaelementplayer.min.css" rel="stylesheet"></link>
+<link href="https://pjpygit.github.io/radio/css/mate.min.css" rel="stylesheet"></link>
+<link href="https://pjpygit.github.io/radio/css/radio.css" rel="stylesheet"></link>
+<script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://pjpygit.github.io/radio/js/mediaelement-and-player.min.js"></script>
+<script src="https://pjpygit.github.io/radio/js/mep-feature-playlist.js"></script>
+
+<style>
+        body {
+            background: #99d0fc;
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+		
+.dot {
+  border-radius: 50%;
+  display: inline-block;
+  border: 1px solid transparent;
+  max-height: 25px;
+  max-width: 25px;
+}
+
+#red {background-color: #930000;}
+#green {background-color: #009300;}
+#blue {background-color: #0090ff;}
+#purple {background-color: #8503ad;}
+#yellow {background-color: #989800;}
+</style>
+
+
+</head>
+
+<body>
+<div style="width: 810px; float: left;background: #0a70ad;">
+<div style="background: #0165a3; width: 400px; float: left;">
+<video autoplay=""  id="player" crossorigin="anonymous"  class="mediaElementPlaylist" controls="" data-alwaysshowcontrols="true" data-showplaylist="true" height="50" preload="none" src="http://peridot.streamguys.com:7150/Mirchi">
+<source src="http://peridot.streamguys.com:7150/Mirchi" type="audio/mp3" title="1: Mirchi Fiji">
+<source src="https://stream.zenolive.com/a2gyqzwpwfeuv.aac" type="audio/mp3" title="2: Hits of Bollywood">
+<source src="https://stream.zenolive.com/kr08sxc2tfeuv.aac" type="audio/mp3" title="3: New Hits of Bollywood">
+<source src="http://51.255.235.165:5476/stream" type="audio/mp3" title="4: Mirchi">
+<source src="https://s3.radio.co/se787a5a6f/listen" type="audio/mp3" title="5: Mirchi 2">
+<source src="https://streams.radio.co/s8d06d0298/listen" type="audio/mp3" title="6: Mirchi 3">
+<source src="https://mirchiplaylive.akamaized.net/hls/live/2036929/MUM/INDIES64kbps.m3u8" type="audio/mp3" title="7: Mirchi Indies">
+<source src="https://mirchiplaylive.akamaized.net/hls/live/2036929/MUM/MRETRO64kbps.m3u8" type="audio/mp3" title="8: Mirchi Hindi Retro">
+<source src="https://mirchiplaylive.akamaized.net/hls/live/2036929/MUM/FILMYM64kbps.m3u8" type="audio/mp3" title="9: Mirchi Filmy">
+<source src="https://mirchiplaylive.akamaized.net/hls/live/2036929/MUM/MEETHI64kbps.m3u8" type="audio/mp3" title="10: Mirchi Meethi">
+<source src="https://delhipunjab-lh.akamaihd.net//i//DelhiPunjab_1@4165//master.m3u8" type="audio/mp3" title="11: Mirchi Delhi-Punjabi">
+<source src="https://mirchiplaylive.akamaized.net/hls/live/2036929-b/MUM/MNINTS_Auto.m3u8" type="audio/mp3" title="12: Mirchi 90 Songs">
+<source src="https://prclive4.listenon.in/Dance" type="audio/mp3" title="13: Radiocity Dance">
+<source src="https://prclive4.listenon.in/Hindi" type="audio/mp3" title="14: Radiocity Hindi">
+<source src="https://prclive4.listenon.in/Smaran" type="audio/mp3" title="15: Radiocity Smaran">
+<source src="https://prclive4.listenon.in/Ghazal" type="audio/mp3" title="16: Radiocity Gazal">
+<source src="https://prclive4.listenon.in/Gujarati" type="audio/mp3" title="17: Radiocity Gujarati">
+<source src="https://prclive4.listenon.in/Punjabi" type="audio/mp3" title="18: Radiocity Punjabi">
+<source src="https://stream.zeno.fm/4dzk8d4uyc9uv" type="audio/mp3" title="19: Radiocity Love Guru Bhojpuri">
+<source src="https://prclive4.listenon.in/Metal" type="audio/mp3" title="20: Radiocity Metal English">
+<source src="https://prclive4.listenon.in/Electronica" type="audio/mp3" title="21: Radiocity Electronica English">
+<source src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio008/playlist.m3u8" type="audio/mp3" title="22: AIR Rainbow Mumbai">
+<source src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio048/playlist.m3u8" type="audio/mp3" title="23: AIR Rainbow Goa">
+<source src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio047/playlist.m3u8" type="audio/mp3" title="24: AIR Rainbow Lucknow">
+<source src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio058/playlist.m3u8" type="audio/mp3" title="25: AIR Rainbow Kolkata">
+<source src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio001/playlist.m3u8" type="audio/mp3" title="26: Vividh Bharati">
+<source src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio011/playlist.m3u8" type="audio/mp3" title="27: Vividh Bharati Mumbai">
+<source src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio037/playlist.m3u8" type="audio/mp3" title="28: Vividh Bharati Ahmedabad">
+<source src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio241/playlist.m3u8" type="audio/mp3" title="29: Vividh Bharati Indore">
+<source src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio156/playlist.m3u8" type="audio/mp3" title="30: Vividh Bharati Rajkot">
+<source src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio089/playlist.m3u8" type="audio/mp3" title="31: Sun City FM Jodhpur">
+<source src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio007/playlist.m3u8" type="audio/mp3" title="32: FM Gold">
+<source src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio135/playlist.m3u8" type="audio/mp3" title="33: AIR Gujarati">
+<source src="http://s3.yesstreaming.net:9000/;" type="audio/mp3" title="34: 8D Vanavil FM">
+<source src="https://eu1.fastcast4u.com/proxy/dzcwbfih_eu?mp=/1" type="audio/mp3" title="35: Akaash FM">
+<source src="http://91.121.77.158:8492/stream" type="audio/mp3" title="36: Asian Fx">
+<source src="http://hoth.alonhosting.com:1080/;stream.mp3" type="audio/mp3" title="37: Bolly Hits">
+<source src="https://ams1.reliastream.com/proxy/bollynbeyond2?mp=/stream" type="audio/mp3" title="38: Bollywood Music">
+<source src="http://stream.zeno.fm/1k0y9f0cm0quv" type="audio/mp3" title="39: Bollywood Punjabi">
+<source src="http://strm112.1.fm/bombaybeats_mobile_mp3?type=.mp3" type="audio/mp3" title="40: Bombay Beats">
+<source src="http://198.245.62.16:8300/;stream.mp3" type="audio/mp3" title="41: Bombay Hott">
+<source src="http://strm112.1.fm/top40_mobile_mp3" type="audio/mp3" title="42: Craze FM">
+<source src="https://ample.radiojar.com/q9rymqdbeyduv" type="audio/mp3" title="43: Desi Radio Hits">
+<source src="http://ice8.securenetsystems.net/EASY96" type="audio/mp3" title="44: Easy 96">
+<source src="http://stream.zeno.fm/szh14bya1feuv" type="audio/mp3" title="45: Gaana Live">
+<source src="https://stream.zeno.fm/g9s4zuk8z4zuv" type="audio/mp3" title="46: Bollywood Evergreen Hits">
+<source src="https://stream.zenolive.com/yv2k0dp18vzuv.aac" type="audio/mp3" title="47: Madhur Sangeet">
+<source src="https://stream.zeno.fm/a2gyqzwpwfeuv" type="audio/mp3" title="48: Hits of Bollywood">
+<source src="https://stream.zeno.fm/kr08sxc2tfeuv" type="audio/mp3" title="49: New Hits of Bollywood">
+<source src="http://ice8.securenetsystems.net/SGTRADIO" type="audio/mp3" title="50: Houston Ki Jaan">
+<source src="http://www.indifun.net:7000/;" type="audio/mp3" title="51: Indifun Radio">
+<source src="http://nickerie.webhop.net:8000/;stream.nsv" type="audio/mp3" title="52: Ishara FM">
+<source src="http://94.23.23.97:29270/listen.mp3?0.6208716554432034" type="audio/mp3" title="53: iWiFM">
+<source src="http://149.56.157.81:8487/stream" type="audio/mp3" title="54: Jiljil Radio">
+<source src="http://stream.zeno.fm/s4e0u5bqhtzuv" type="audio/mp3" title="55: Just Punjabi">
+<source src="http://198.178.123.14:8216/;" type="audio/mp3" title="56: Kalighat">
+<source src="http://khasharyanvi.com:8000/live" type="audio/mp3" title="57: Khas Haryanvi">
+<source src="http://direct.sharp-stream.com/sunrise.mp3" type="audio/mp3" title="58: Kismat Radio">
+<source src="http://stream1.liferadio.at/" type="audio/mp3" title="59: Life FM">
+<source src="https://prclive4.listenon.in/Ishq" type="audio/mp3" title="60: Love Guru">
+<source src="http://stream.zeno.fm/d9mbtnhd8tzuv" type="audio/mp3" title="61: Love Junction">
+<source src="https://stream.radio.co/s9f46a9bb1/listen" type="audio/mp3" title="62: Masala 101">
+<source src="http://playerservices.streamtheworld.com/api/livestream-redirect/MS_EAST_S01.mp3" type="audio/mp3" title="63: Mera Sangeet USA">
+<source src="http://stream.zeno.fm/ueag5fnrarzuv" type="audio/mp3" title="64: Mohabbat Radio">
+<source src="http://stream.zeno.fm/qe3kbywg65quv" type="audio/mp3" title="65: Punjabi Beats">
+<source src="http://us9.streamingpulse.com:7058/stream" type="audio/mp3" title="66: Radio Afasana">
+<source src="http://listen.openstream.co/4172/audio" type="audio/mp3" title="67: Radio Beat Extra English">
+<source src="https://ssl.aloncast.com:1513/;" type="audio/mp3" title="68: Radio Brisvaani">
+<source src="http://radiodhaakad.com:8000/live" type="audio/mp3" title="69: Radio Dhaakad">
+<source src="http://weareharyanvi.com:8000/listen" type="audio/mp3" title="70: Radio Haryanvi">
+<source src="http://162.244.80.52:4614/;stream.mp3" type="audio/mp3" title="71: Radio India">
+<source src="http://198.7.59.28:8078/stream" type="audio/mp3" title="72: Radio JSR">
+<source src="https://azuracast.radiokasoot.com/radio/8000/listen" type="audio/mp3" title="73: Radio Kasoot">
+<source src="http://icecast.bkwsu.eu/radiomadhuban.mp3" type="audio/mp3" title="74: Radio Madhuban">
+<source src="https://stream.zenolive.com/5sm5gtgttzzuv.aac" type="audio/mp3" title="75: Radio Me Online">
+<source src="http://stream.zeno.fm/sgkeutfbaw5tv" type="audio/mp3" title="76: Radio Namkin">
+<source src="https://node-35.zeno.fm/n1b55arwqg0uv" type="audio/mp3" title="77: Radio Noida">
+<source src="https://solid48.streamupsolutions.com/proxy/radiosbs/radiosbs" type="audio/mp3" title="78: Radio SBS FM">
+<source src="https://eu10.fastcast4u.com:5045/stream" type="audio/mp3" title="79: Radio Sense">
+<source src="http://s1.voscast.com:9484/;stream.mp3" type="audio/mp3" title="80: Radio Teen Taal">
+<source src="http://titan.shoutca.st:8647/stream" type="audio/mp3" title="81: Radio Theeram">
+<source src="http://173.212.234.220/radio/8000/radio.mp3" type="audio/mp3" title="82: Radio Udaan">
+<source src="http://sc18.strictlyhosting.co.uk:8000/;" type="audio/mp3" title="83: Radio XL">
+<source src="http://us9.streamingpulse.com:7415/;stream.mp3" type="audio/mp3" title="84: Radio Zindagi Virginia">
+<source src="http://us9.streamingpulse.com:7431/;stream.mp3" type="audio/mp3" title="85: Radio Zindagi San Fransisco">
+<source src="http://us9.streamingpulse.com:7417/;stream.mp3" type="audio/mp3" title="86: Radio Zindagi New York">
+<source src="http://stream.radiobollyfm.in:8201/;stream.mp3" type="audio/mp3" title="87: Radio Bolly FM">
+<source src="http://stream.zeno.fm/mb6b1xs7m5zuv" type="audio/mp3" title="88: Radio Taj">
+<source src="https://stream.zeno.fm/g372rxef798uv" type="audio/mp3" title="89: Retro Bollywood">
+<source src="https://sayajifm.radioca.st/stream" type="audio/mp3" title="90: Sayaji Radio">
+<source src="http://janus.shoutca.st:8112/stream" type="audio/mp3" title="91: Shripad Radio">
+<source src="http://41.72.210.222:88/stream" type="audio/mp3" title="92: Sound Asia FM">
+<source src="http://79.143.187.96:8053/live" type="audio/mp3" title="93: Suvidha Radio">
+<source src="http://s1.voscast.com:9484/;stream.mp3" type="audio/mp3" title="94: Teen Taal">
+<source src="https://stream.zenolive.com/96gxev8nhzzuv.aac" type="audio/mp3" title="95: Track FM">
+<source src="http://music2.vvradio.co.in:2802/stream" type="audio/mp3" title="96: V V Radio">
+<source src="http://stream.zeno.fm/d0rwvvwa6p8uv" type="audio/mp3" title="97: Goldy Blast">
+<source src="https://samcloud.spacial.com/api/listen?sid=124642&rid=261558&f=aac,any&br=64000,any&m=sc" type="audio/mp3" title="98: Sheetal Sangeet Gujarati">
+<source src="http://s9.voscast.com:7402/stream/1/" type="audio/mp3" title="99: Rangilo Gujarat">
+</video>     
+</div>
+
+
+
+
+
+
+
+
+
+
+<div style="width: 400px; float: right; background: #0a70ad;">
+
+<div id="dotdiv" style="margin-top: 10px; height: 35px;text-align:center;">
+  <span class="dot" id="red"></span>
+  <span class="dot" id="green"></span>
+  <span class="dot" id="blue"></span>
+  <span class="dot" id="purple"></span>
+  <span class="dot" id="yellow"></span>
+</div>
+
+
+<canvas id="canvas" width="400" height="300"></canvas>
+ 
+<div style="margin-top: 30px; font-size: 20px; color: white;">
+Frequency for bars: <span id="freq"></span>
+</div>    
+    <script>
+        const audiofreq = document.getElementById('freq');
+		const dotdiv = document.getElementsByClassName("example color");
+        
+		const audio = document.getElementById('player');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const analyser = audioContext.createAnalyser();
+        const source = audioContext.createMediaElementSource(audio);
+
+        source.connect(analyser);
+        analyser.connect(audioContext.destination);
+
+        analyser.fftSize = 256;
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+
+        // Set up gradient for bars
+        const gradient = ctx.createLinearGradient(135, 0, 0, canvas.height, canvas.width);
+        gradient.addColorStop(0, getRandomColor());
+        gradient.addColorStop(0.20, getRandomColor());
+		gradient.addColorStop(0.40, getRandomColor());
+		gradient.addColorStop(0.60, getRandomColor());
+		gradient.addColorStop(0.80, getRandomColor());
+		gradient.addColorStop(1, getRandomColor());
+
+        // Draw animated gradient bars
+        function drawBars() {
+            analyser.getByteFrequencyData(dataArray);
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+			// const numBars = 64;
+            const barWidth = (canvas.width / bufferLength) * 1.3;
+            let barHeight;
+            let x = 0;
+
+            for (let i = 0; i < bufferLength; i++) {
+                barHeight = dataArray[i] / 1.15;
+				ctx.fillStyle = gradient;
+                ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+
+                x += barWidth + 1;
+            }
+			
+			
+			
+			const divElements = document.getElementsByClassName('dot');
+			brightness = `brightness(${dataArray[20] * 2}%)`;
+			contrast = `contrast(${dataArray[20] * 2}%)`;
+			height = (dataArray[20] /5)+'px';
+            // Iterate over the collection and apply the brightness filter
+            for (const divElement of divElements) {
+					divElement.style.filter = brightness; // Adjust the brightness value as needed
+					divElement.style.filter = contrast;
+					divElement.style.borderColor = getRandomColor();
+					divElement.style.height = height;
+					divElement.style.width = height;
+					
+				}
+			
+			requestAnimationFrame(drawBars);			
+			audiofreq.innerHTML = dataArray[20];
+			
+        }
+
+        audio.addEventListener('play', () => {
+            audioContext.resume().then(() => {
+                drawBars();
+            });
+        });
+		
+		
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)]; // Changed 15 to 16
+  }
+
+  // Extract the RGB components
+  const r = parseInt(color.slice(1, 4), 16);
+  const g = parseInt(color.slice(3, 5), 16);
+  const b = parseInt(color.slice(4, 9), 16);
+
+  // Generate a random alpha value between 0.1 and 1
+  const a = Math.random() * 0.9 + 0.5;
+
+  // Return the RGBA string
+  return `rgba(${r}, ${g}, ${b}, ${a})`;
+}
+
+// Example usage
+const randomRGBAColor = getRandomColor();		
+		
+		
+    </script>
+        </div>
+    </div>
+	
+	
+<script>
+if ($.fn.mediaelementplayer) {
+            $('audio.mediaElementPlaylist').mediaelementplayer({
+                audioWidth: '100%',
+                alwaysShowControls: true,
+                error: function (media, node) {
+                    $(media).parents('.mediaElementPlaylist').addClass('playlist_cannotplay');
+                },
+                features: ['playlistfeature', 'prevtrack', 'playpause', 'nexttrack', 'playlist', 'volume']
+            });
+
+            $('video.mediaElementPlaylist').mediaelementplayer({
+                stretching: 'responsive',
+                playlistposition: 'bottom',
+                alwaysShowControls: true,
+                alwaysShowPlaylist: true,
+                features: ['playlistfeature', 'prevtrack', 'playpause', 'nexttrack', 'playlist', 'volume']
+            });
+        }
+</script>		
+	
+	
+</body>
+</html>
