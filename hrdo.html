@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hindi Radio</title>
+  <title>Audio Player</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.16/mediaelementplayer.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.16/mejs-playlist.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.16/mediaelement-and-player.min.js"></script>
@@ -19,8 +18,8 @@
     }
 
 
-    .mejs__playlist {
-      max-height: 75vh;
+    .mejs__playlist, #play1 {
+      max-height: 65vh;
       overflow-y: auto;
       margin-top: 1px;
       color: white;
@@ -47,7 +46,7 @@
 
 
 
-    #playlist li {
+    #playlist li, #play1 li {
 	  margin-left: -40px;
       list-style: none;
       padding: 5px;
@@ -55,15 +54,15 @@
       cursor: pointer;
     }
 
-    #playlist li:nth-child(odd) {
+    #playlist li:nth-child(odd), #play1 li:nth-child(odd) {
       background: #007ac1;
     }
 
-    #playlist li:nth-child(even) {
+    #playlist li:nth-child(even), #play1 li:nth-child(even) {
       background: #0092e8;
     }
 
-    #playlist li:hover {
+    #playlist li:hover, #play1 li:hover  {
       font-weight: bold;
     }
 
@@ -186,7 +185,7 @@
 	}
 </style>
   
- 
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
 
@@ -236,7 +235,91 @@
 <div id="outerSquare"></div>
 </div>  
 
-<script>
+<div id="hrdos">
+<ul id="playlist" class="mejs__playlist">
+<li data-src="https://playerservices.streamtheworld.com/api/livestream-redirect/NJS_HIN_ESTAAC.aac" data-title="Mirchi NJ">1: Mirchi NJ</li>
+<li data-src="https://playerservices.streamtheworld.com/api/livestream-redirect/NYC_HIN_ESTAAC.aac" data-title="Mirchi NYC">2: Mirchi NYC</li>
+<li data-src="https://streams.radio.co/s8d06d0298/listen" data-title="Radio Nayra Atlanta">3: Radio Nayra Atlanta</li>
+<li data-src="https://peridot.streamguys1.com:7155/MirchiFiji" data-title="Mirchi Fiji">4: Mirchi Fiji</li> <li data-src="http://51.255.235.165:5476/stream" data-title="Mirchi UAE">5: Mirchi UAE</li>
+<li data-src="https://stream.zenolive.com/kr08sxc2tfeuv.aac" data-title="New Hits of Bollywood">5 New Hits of Bollywood</li>
+<li data-src="https://stream.zenolive.com/a2gyqzwpwfeuv.aac" data-title="Hits of Bollywood">6: Hits of Bollywood</li>
+<li data-src="https://stream.zeno.fm/0ghtfp8ztm0uv" data-title="Kishor Kumar 1">7: Kishor Kumar 1</li>
+<li data-src="https://stream.zeno.fm/s9c3zek68a0uv" data-title="Kishor Kumar 2">8: Kishor Kumar 2</li>
+<li data-src="https://stream.zeno.fm/mrcz5sus1p8uv" data-title="Mukesh">9: Mukesh</li>
+<li data-src="https://stream.zeno.fm/xe1ye67prfhvv" data-title="Lata Mangeshkar">10: Lata Mangeshkar</li>
+<li data-src="https://stream.zeno.fm/55dqsbewxwzuv" data-title="Asha Bhosle">11: Asha Bhosle</li>
+<li data-src="https://stream.zeno.fm/rfpf8qec94zuv" data-title="Arijit Singh">12: Arijit Singh</li>
+<li data-src="https://stream.zeno.fm/shxt7qxapy8uv" data-title="Kumar Sanu">13: Kumar Sanu</li>
+<li data-src="https://prclive4.listenon.in/Hindi" data-title="Radiocity Hindi">14: Radiocity Hindi</li>
+<li data-src="https://prclive4.listenon.in/Freedom" data-title="Radiocity Smaran">15: Radiocity Freedom</li>
+<li data-src="https://prclive4.listenon.in/Metal" data-title="Radiocity Metal English">16: Radiocity Metal English</li>
+<li data-src="https://prclive4.listenon.in/Electronica" data-title="Radiocity Electronica English">17: Radiocity Electronica English</li>
+<li data-src="https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio004/hlspbaudio00464kbps.m3u8" data-title="AIR Rainbow Mumbai">18: AIR Rainbow Mumbai</li>
+<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio048/playlist.m3u8" data-title="AIR Rainbow Goa">19: AIR Rainbow Goa</li>
+<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio047/playlist.m3u8" data-title="AIR Rainbow Lucknow">20: AIR Rainbow Lucknow</li>
+<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio058/playlist.m3u8" data-title="AIR Rainbow Kolkata">21: AIR Rainbow Kolkata</li>
+<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio001/playlist.m3u8" data-title="Vividh Bharati">22: Vividh Bharati</li>
+<li data-src="https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio011/hlspbaudio011_Auto.m3u8" data-title="Vividh Bharati Mumbai">23: Vividh Bharati Mumbai</li>
+<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio037/playlist.m3u8" data-title="Vividh Bharati Ahmedabad">24: Vividh Bharati Ahmedabad</li>
+<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio241/playlist.m3u8" data-title="Vividh Bharati Indore">26: Vividh Bharati Indore</li>
+<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio156/playlist.m3u8" data-title="Vividh Bharati Rajkot">26: Vividh Bharati Rajkot</li>
+<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio089/playlist.m3u8" data-title="Sun City FM Jodhpur">27: Sun City FM Jodhpur</li>
+<li data-src="https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio007/hlspbaudio007_Auto.m3u8" data-title="FM Gold Mumbai">28: FM Gold Mumbai</li>
+<li data-src="https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio005/hlspbaudio005_Auto.m3u8" data-title="FM Gold Delhi">29: FM Gold Delhi</li>
+<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio135/playlist.m3u8" data-title="AIR Gujarati">30: AIR Gujarati</li>
+<li data-src="http://s3.yesstreaming.net:9000/;" data-title="8D Vanavil FM">31: 8D Vanavil FM</li>
+<li data-src="http://hoth.alonhosting.com:1080/;stream.mp3" data-title="Bolly Hits">32: Bolly Hits</li>
+<li data-src="http://stream.zeno.fm/1k0y9f0cm0quv" data-title="Bollywood Punjabi">33: Bollywood Punjabi</li>
+<li data-src="http://strm112.1.fm/bombaybeats_mobile_mp3?type=.mp3" data-title="Bombay Beats">34: Bombay Beats</li>
+<li data-src="https://ec5.yesstreaming.net:2555/stream" data-title="Bombay Hott">35: Bombay Hott</li>
+<li data-src="http://strm112.1.fm/top40_mobile_mp3" data-title="Craze FM">36: Craze FM</li>
+<li data-src="http://ice8.securenetsystems.net/EASY96" data-title="Easy 96">37: Easy 96</li>
+<li data-src="https://stream.zeno.fm/g9s4zuk8z4zuv" data-title="Bollywood Evergreen Hits">38: Bollywood Evergreen Hits</li>
+<li data-src="https://stream.zenolive.com/yv2k0dp18vzuv.aac" data-title="Madhur Sangeet">39: Madhur Sangeet</li>
+<li data-src="https://stream.zeno.fm/a2gyqzwpwfeuv" data-title="Hits of Bollywood">40: Hits of Bollywood</li>
+<li data-src="https://stream.zeno.fm/kr08sxc2tfeuv" data-title="New Hits of Bollywood">41: New Hits of Bollywood</li>
+<li data-src="http://ice8.securenetsystems.net/SGTRADIO" data-title="Houston Ki Jaan">42: Houston Ki Jaan</li>
+<li data-src="http://www.indifun.net:7000/;" data-title="Indifun Radio">43: Indifun Radio</li>
+<li data-src="http://94.23.23.97:29270/listen.mp3?0.6208716554432034" data-title="iWiFM">44: iWiFM</li>
+<li data-src="http://149.56.157.81:8487/stream" data-title="Jiljil Radio">45: Jiljil Radio</li>
+<li data-src="http://stream.zeno.fm/s4e0u5bqhtzuv" data-title="Just Punjabi">46: Just Punjabi</li>
+<li data-src="https://stream.zeno.fm/60ef4p33vxquv" data-title="Kalighat">47: Kalighat</li>
+<li data-src="https://radiodhaakad.com:8000/live2?type=.mp3" data-title="Khas Haryanvi">48: Khas Haryanvi</li>
+<li data-src="https://stream.radio.co/s9f46a9bb1/listen" data-title="Masala 101">49: Masala 101</li>
+<li data-src="http://playerservices.streamtheworld.com/api/livestream-redirect/MS_EAST_S01.mp3" data-title="Mera Sangeet USA">50: Mera Sangeet USA</li>
+<li data-src="http://stream.zeno.fm/ueag5fnrarzuv" data-title="Mohabbat Radio">51: Mohabbat Radio</li>
+<li data-src="http://stream.zeno.fm/qe3kbywg65quv" data-title="Punjabi Beats">52: Punjabi Beats</li>
+<li data-src="http://us9.streamingpulse.com:7058/stream" data-title="Radio Afasana">53: Radio Afasana</li>
+<li data-src="http://listen.openstream.co/4172/audio" data-title="Radio Beat Extra">54: Radio Beat Extra</li>
+<li data-src="https://centova71.instainternet.com/proxy/brisvaaniradio?mp=/stream" data-title="Radio Brisvaani">55: Radio Brisvaani</li>
+<li data-src="http://weareharyanvi.com:8000/listen" data-title="Radio Haryanvi">56: Radio Haryanvi</li>
+<li data-src="http://162.244.80.52:4614/;stream.mp3" data-title="Radio India">57: Radio India</li>
+<li data-src="http://198.7.59.28:8078/stream" data-title="Radio JSR">58: Radio JSR</li>
+<li data-src="https://azuracast.radiokasoot.com/radio/8000/listen" data-title="7Radio Kasoot">59: Radio Kasoot</li>
+<li data-src="https://icecast.bkwsu.eu/radiomadhuban.mp3" data-title="Radio Madhuban">60: Radio Madhuban</li>
+<li data-src="https://stream.zeno.fm/84h7fsbaqv5tv" data-title="Radio Namkin">61: Radio Namkin</li>
+<li data-src="https://stream.zeno.fm/xbz9wlgsygyuv" data-title="Radio Noida">62: Radio Noida</li>
+<li data-src="https://s03.diazol.hu:7010/stream.mp3" data-title="Radio Sense">63: Radio Sense</li>
+<li data-src="http://173.212.234.220/radio/8000/radio.mp3" data-title="Radio Udaan">64: Radio Udaan</li>
+<li data-src="https://xlradio.co.uk:8000/;" data-title="Radio XL">65: Radio XL</li>
+<li data-src="http://us9.streamingpulse.com:7415/;stream.mp3" data-title="Radio Zindagi Virginia">66: Radio Zindagi Virginia</li>
+<li data-src="http://us9.streamingpulse.com:7431/;stream.mp3" data-title="Radio Zindagi San Fransisco">67: Radio Zindagi San Fransisco</li>
+<li data-src="http://us9.streamingpulse.com:7417/;stream.mp3" data-title="Radio Zindagi New York">68: Radio Zindagi New York</li>
+<li data-src="http://stream.radiobollyfm.in:8201/;stream.mp3" data-title="Radio Bolly FM">69: Radio Bolly FM</li>
+<li data-src="http://stream.zeno.fm/mb6b1xs7m5zuv" data-title="Radio Taj">70: Radio Taj</li>
+<li data-src="https://stream.zeno.fm/g372rxef798uv" data-title="Retro Bollywood">71: Retro Bollywood</li>
+<li data-src="https://sayajifm.radioca.st/stream" data-title="Sayaji Radio">72: Sayaji Radio</li>
+<li data-src="https://shripadradio.radioca.st/;" data-title="Shripad Radio">73: Shripad Radio</li>
+<li data-src="https://strw3.openstream.co/1319" data-title="Teen Taal">74: Teen Taal</li>
+<li data-src="https://stream.zenolive.com/96gxev8nhzzuv.aac" data-title="Track FM">75: Track FM</li>
+<li data-src="http://stream2.ujala.nl/stream/2/listen.mp3" data-title="Ujala Radio">76: Ujala Radio</li>
+<li data-src="http://music2.vvradio.co.in:2802/stream" data-title="V V Radio">77: V V Radio</li>
+<li data-src="http://stream.zeno.fm/d0rwvvwa6p8uv" data-title="Goldy Blast">78: Goldy Blast</li>
+<li data-src="https://az13.yesstreaming.net:8200/radio.mp3" data-title="Sheetal Sangeet Gujarati">79: Sheetal Sangeet Gujarati</li>
+<li data-src="https://stream.zeno.fm/xvrm5ezyurhvv" data-title="Mahakal">80: Mahakal</li>
+</ul>
+</div>
+ <script>
     document.addEventListener("DOMContentLoaded", function () {
         const container = document.getElementById("outerSquare");
 
@@ -246,7 +329,7 @@
         for (let i = 0; i < 16; i++) {
             const canvas = document.createElement("canvas");
             canvas.classList.add("circle");
-            canvas.width = 350; // Set canvas dimensions
+            canvas.width = 20; // Set canvas dimensions
             canvas.height = 20; // Adjust as needed
 			if (i === 0) {
             canvas.style.marginLeft = '0px'; // Apply style only to the first canvas
@@ -282,6 +365,12 @@
             contexts.forEach((ctx, index) => {
                 const hueShift = (index * 26) % 360; // Shift hue for each canvas
                 const color = `hsl(${(valueRatio * 360 + hueShift) % 360}, 100%, 50%)`;
+			//	const frequencyValue = dataArray[index] || 0; // Get frequency data for each circle
+            //   const size = Math.max(10, frequencyValue / 10); // Scale frequency value (min size = 10)
+
+        // Adjust canvas width and height dynamically
+       // ctx.canvas.width = size;
+       // ctx.canvas.height = size;
 
                 ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
                 ctx.fillStyle = color;
@@ -309,232 +398,295 @@
     }
 });
 
+
+
+
+
+    const playerElement = document.getElementById('player');
+    const player = new MediaElementPlayer(playerElement, {
+    features: ['playpause', 'volume'],
+    startVolume: 1,
+    audioWidth: '100%',
+});
+
+const playlistItems = document.querySelectorAll('#playlist li');
+const trackNameContainer = document.getElementById('trackname');
+const playpauseImg = document.getElementById('playpauseimg');
+const volumeControl = document.getElementById('volumeControl');
+const volumeIcon = document.getElementById('volumeIcon'); // Add this element to represent volume icon
+let currentIndex = '';
+
+// Update play/pause icon
+function updatePlayPauseIcon() {
+    if (player.media.paused) {
+        playpauseImg.src = "https://live.staticflickr.com//65535//54222863122_b4b5219261_o.png"; // Play icon
+    } else {
+        playpauseImg.src = "https://live.staticflickr.com//65535//54224009679_55838f6b5e_o.png"; // Pause icon
+    }
+}
+
+// Load track function
+function loadTrack(index) {
+    const track = playlistItems[index];
+    const src = track.getAttribute('data-src');
+    const title = track.getAttribute('data-title');
+    const fileExtension = src.split('.').pop().toLowerCase();
+
+    // Handle HLS (m3u8) source
+    if (fileExtension === 'm3u8' && Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(src);
+        hls.attachMedia(player.media);
+    } else if (fileExtension === 'm3u8' && player.media.canPlayType('application/vnd.apple.mpegurl')) {
+        player.media.src = src;
+    } else {
+        // Handle other file types (MP3, MP4, AAC, etc.)
+        player.media.src = src;
+    }
+
+    player.load();
+    player.play();
+
+    // Update the track name display
+    trackNameContainer.innerHTML = 'Now Playing: ' + title;
+
+    // Highlight the current track in the playlist
+    playlistItems.forEach(item => item.classList.remove('current'));
+    track.classList.add('current');
+
+    // Update the play/pause icon
+    updatePlayPauseIcon();
+}
+
+// Playlist item click event
+playlistItems.forEach((item, index) => {
+    item.addEventListener('click', () => {
+        currentIndex = index;
+        loadTrack(currentIndex);
     });
+});
+
+// Volume control event listener
+volumeControl.addEventListener('input', (e) => {
+    const volume = e.target.value;
+
+    if (volume == 0) {
+        volumeIcon.src = "https://live.staticflickr.com//65535//54239544849_b0ac5b3fa2_o.png"; // Mute icon
+    } else if (volume < 0.4) {
+        volumeIcon.src = "https://live.staticflickr.com//65535//54239723460_1d10ffe5b7_o.png"; // Low volume icon
+    } else if (volume < 0.8) {
+        volumeIcon.src = "https://live.staticflickr.com//65535//54239314676_008e59508e_o.png"; // Medium volume icon
+    } else {
+        volumeIcon.src = "https://live.staticflickr.com//65535//54238416147_1851f48a34_o.png"; // High volume icon
+    }
+    player.setVolume(e.target.value);
+});
+
+// Previous track button
+document.getElementById('prevTrack').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + playlistItems.length) % playlistItems.length;
+    loadTrack(currentIndex);
+});
+
+// Next track button
+document.getElementById('nextTrack').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % playlistItems.length;
+    loadTrack(currentIndex);
+});
+
+// Play/pause button
+playpauseImg.addEventListener('click', () => {
+    if (player.media.paused) {
+        player.play();
+    } else {
+        player.pause();
+    }
+    updatePlayPauseIcon();
+});
+
+// Event listeners for play and pause to update the icon
+player.media.addEventListener('play', updatePlayPauseIcon);
+player.media.addEventListener('pause', updatePlayPauseIcon);
+
+// Load the first track initially
+loadTrack(currentIndex);
+  });
 </script>
 
+
+
+
+
+
+
+
+
+
+<div id="other_radio" style="display: none;">
+  <style>
+    #play1 li {
+      margin-left: -40px;
+      list-style: none;
+      padding: 5px;
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+	#play1 a {
+      margin-left: -40px;
+      list-style: none;
+      padding: 5px;
+      margin-bottom: 5px;
+      cursor: pointer;
+	  background: #0092E8;
+	  color: white;
+	  text-decoration: none;
+    }
+	
+	#toggleradios {
+		color: white; 
+		font-size:22px; 
+		width: 330px; 
+		border: 2px solid white; 
+		border-radius: 20px; 
+		padding: 10px; 
+		background: #0092E8; 
+		text-align: center;
+	}
+	#toggleradios:hover { background: #006aa8; }
+  </style>
+  <audio id="player1"></audio>
+  <ul id="play1" style="min-height: 65vh; max-height: 65vh; overflow: auto;">
+    <li data-src="http://stream.akaashfm.com:8000/live" data-title="Akaash FM">
+     1: Akaash FM
+    </li>
+    
+    <li data-src="https://solid48.streamupsolutions.com/proxy/radiosbs/radiosbs" data-title="Radio SBS FM">
+      2: Radio SBS FM
+    </li>
+    <li data-src="http://41.72.210.222:88/stream" data-title="92: Sound Asia FM">
+      3: Sound Asia FM
+    </li>
+    <li data-src="https://drive.uber.radio/uber/bollywoodsunidhichauhan/icecast.audio" data-title="Sunidhi Chauhan">
+      4: Sunidhi Chauhan
+    </li>
+    <li data-src="http://stream.sunrisefm.nl:9600/stream" data-title="Sunrise FM">
+      5: Sunrise FM
+    </li>
+    <li data-src="http://s9.voscast.com:7402/;"       data-title="Rangilo Gujarat">
+      6: Rangilo Gujarat
+    </li>
+    <li data-src="https://my.ssl-stream.com/Suvidha_Radio" data-title="Suvidha Radio">
+      7: Suvidha Radio
+    </li>
+	<a href="http://radiodhaakad.com:8000/live?type=.mp3" target="_blank">
+	8: Radio Dhakad</a>
+  </ul>
+  
+   
+  
+</div>
+
+
+
+<div style="" id="toggleradios">
+Other Radios
 </div>
 
 
 
 
+<script>
+    const toggleradios = document.getElementById('toggleradios');
+    const hrdos = document.getElementById('hrdos');
+    const otherRadio = document.getElementById('other_radio');
+    const trackname = document.getElementById('trackname');
+    const player1 = document.getElementById("player1");
+    const player = document.getElementById("player");
+    const playpauseImg = document.getElementById("playpauseimg");
+    const playpauseButton = document.getElementById("playpause");
+	const container = document.getElementById("outerSquare");
 
+    let currentPlayingLi = null;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<ul id="playlist" class="mejs__playlist">
-<li data-src="https://playerservices.streamtheworld.com/api/livestream-redirect/NJS_HIN_ESTAAC.aac" data-title="Mirchi NJ">1: Mirchi NJ</li>
-<li data-src="https://playerservices.streamtheworld.com/api/livestream-redirect/NYC_HIN_ESTAAC.aac" data-title="Mirchi NYC">2: Mirchi NYC</li>
-<li data-src="https://streams.radio.co/s8d06d0298/listen" data-title="Radio Nayra Atlanta">2A: Radio Nayra Atlanta</li>
-
-<li data-src="https://peridot.streamguys1.com:7155/MirchiFiji" data-title="Mirchi Fiji">3: Mirchi Fiji</li>
-  <li data-src="http://51.255.235.165:5476/stream" data-title="Mirchi UAE">4: Mirchi UAE</li>
-<li data-src="https://streams.radio.co/s8d06d0298/listen" data-title="Mirchi 3">5: Mirchi 3</li>
-<li data-src="https://stream.zenolive.com/kr08sxc2tfeuv.aac" data-title="5: New Hits of Bollywood">5A: New Hits of Bollywood</li>
-<li data-src="https://stream.zenolive.com/a2gyqzwpwfeuv.aac" data-title="6: Hits of Bollywood">6: Hits of Bollywood</li>
-<li data-src="https://mirchiplaylive.akamaized.net/hls/live/2036929/MUM/INDIES64kbps.m3u8" data-title="7: Mirchi Indies">7: Mirchi Indies</li>
-<li data-src="https://mirchiplaylive.akamaized.net/hls/live/2036929/MUM/MRETRO64kbps.m3u8" data-title="8: Mirchi Hindi Retro">8: Mirchi Hindi Retro</li>
-<li data-src="https://mirchiplaylive.akamaized.net/hls/live/2036929/MUM/FILMYM64kbps.m3u8" data-title="9: Mirchi Filmy">9: Mirchi Filmy</li>
-<li data-src="https://mirchiplaylive.akamaized.net/hls/live/2036929/MUM/MEETHI64kbps.m3u8" data-title="10: Mirchi Meethi">10: Mirchi Meethi</li>
-<li data-src="https://delhipunjab-lh.akamaihd.net//i//DelhiPunjab_1@4165//master.m3u8" data-title="11: Mirchi Delhi-Punjabi">11: Mirchi Delhi-Punjabi</li>
-<li data-src="https://mirchiplaylive.akamaized.net/hls/live/2036929-b/MUM/MNINTS_Auto.m3u8" data-title="12: Mirchi 90 Songs">12: Mirchi 90 Songs</li>
-<li data-src="https://prclive4.listenon.in/Dance" data-title="13: Radiocity Dance">13: Radiocity Dance</li>
-<li data-src="https://prclive4.listenon.in/Hindi" data-title="14: Radiocity Hindi">14: Radiocity Hindi</li>
-<li data-src="https://prclive4.listenon.in/Smaran" data-title="15: Radiocity Smaran">15: Radiocity Smaran</li>
-<li data-src="https://prclive4.listenon.in/Ghazal" data-title="16: Radiocity Gazal">16: Radiocity Gazal</li>
-<li data-src="https://prclive4.listenon.in/Gujarati" data-title="17: Radiocity Gujarati">17: Radiocity Gujarati</li>
-<li data-src="https://prclive4.listenon.in/Punjabi" data-title="18: Radiocity Punjabi">18: Radiocity Punjabi</li>
-<li data-src="https://stream.zeno.fm/4dzk8d4uyc9uv" data-title="19: Radiocity Love Guru Bhojpuri">19: Radiocity Love Guru Bhojpuri</li>
-<li data-src="https://prclive4.listenon.in/Metal" data-title="20: Radiocity Metal English">20: Radiocity Metal English</li>
-<li data-src="https://prclive4.listenon.in/Electronica" data-title="21: Radiocity Electronica English">21: Radiocity Electronica English</li>
-<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio008/playlist.m3u8" data-title="22: AIR Rainbow Mumbai">22: AIR Rainbow Mumbai</li>
-<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio048/playlist.m3u8" data-title="23: AIR Rainbow Goa">23: AIR Rainbow Goa</li>
-<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio047/playlist.m3u8" data-title="24: AIR Rainbow Lucknow">24: AIR Rainbow Lucknow</li>
-<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio058/playlist.m3u8" data-title="25: AIR Rainbow Kolkata">25: AIR Rainbow Kolkata</li>
-<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio001/playlist.m3u8" data-title="26: Vividh Bharati">26: Vividh Bharati</li>
-<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio011/playlist.m3u8" data-title="27: Vividh Bharati Mumbai">27: Vividh Bharati Mumbai</li>
-<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio037/playlist.m3u8" data-title="28: Vividh Bharati Ahmedabad">28: Vividh Bharati Ahmedabad</li>
-<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio241/playlist.m3u8" data-title="29: Vividh Bharati Indore">29: Vividh Bharati Indore</li>
-<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio156/playlist.m3u8" data-title="30: Vividh Bharati Rajkot">30: Vividh Bharati Rajkot</li>
-<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio089/playlist.m3u8" data-title="31: Sun City FM Jodhpur">31: Sun City FM Jodhpur</li>
-<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio007/playlist.m3u8" data-title="32: FM Gold">32: FM Gold</li>
-<li data-src="https://air.pc.cdn.bitgravity.com/air/live/pbaudio135/playlist.m3u8" data-title="33: AIR Gujarati">33: AIR Gujarati</li>
-<li data-src="http://s3.yesstreaming.net:9000/;" data-title="34: 8D Vanavil FM">34: 8D Vanavil FM</li>
-<li data-src="https://eu1.fastcast4u.com/proxy/dzcwbfih_eu?mp=/1" data-title="35: Akaash FM">35: Akaash FM</li>
-<li data-src="http://91.121.77.158:8492/stream" data-title="36: Asian Fx">36: Asian Fx</li>
-<li data-src="http://hoth.alonhosting.com:1080/;stream.mp3" data-title="37: Bolly Hits">37: Bolly Hits</li>
-<li data-src="https://ams1.reliastream.com/proxy/bollynbeyond2?mp=/stream" data-title="38: Bollywood Music">38: Bollywood Music</li>
-<li data-src="http://stream.zeno.fm/1k0y9f0cm0quv" data-title="39: Bollywood Punjabi">39: Bollywood Punjabi</li>
-<li data-src="http://strm112.1.fm/bombaybeats_mobile_mp3?type=.mp3" data-title="40: Bombay Beats">40: Bombay Beats</li>
-<li data-src="http://198.245.62.16:8300/;stream.mp3" data-title="41: Bombay Hott">41: Bombay Hott</li>
-<li data-src="http://strm112.1.fm/top40_mobile_mp3" data-title="42: Craze FM">42: Craze FM</li>
-<li data-src="https://ample.radiojar.com/q9rymqdbeyduv" data-title="43: Desi Radio Hits">43: Desi Radio Hits</li>
-<li data-src="http://ice8.securenetsystems.net/EASY96" data-title="44: Easy 96">44: Easy 96</li>
-<li data-src="http://stream.zeno.fm/szh14bya1feuv" data-title="45: Gaana Live">45: Gaana Live</li>
-<li data-src="https://stream.zeno.fm/g9s4zuk8z4zuv" data-title="46: Bollywood Evergreen Hits">46: Bollywood Evergreen Hits</li>
-<li data-src="https://stream.zenolive.com/yv2k0dp18vzuv.aac" data-title="47: Madhur Sangeet">47: Madhur Sangeet</li>
-<li data-src="https://stream.zeno.fm/a2gyqzwpwfeuv" data-title="48: Hits of Bollywood">48: Hits of Bollywood</li>
-<li data-src="https://stream.zeno.fm/kr08sxc2tfeuv" data-title="49: New Hits of Bollywood">49: New Hits of Bollywood</li>
-<li data-src="http://ice8.securenetsystems.net/SGTRADIO" data-title="50: Houston Ki Jaan">50: Houston Ki Jaan</li>
-<li data-src="http://www.indifun.net:7000/;" data-title="51: Indifun Radio">51: Indifun Radio</li>
-<li data-src="http://nickerie.webhop.net:8000/;stream.nsv" data-title="52: Ishara FM">52: Ishara FM</li>
-<li data-src="http://94.23.23.97:29270/listen.mp3?0.6208716554432034" data-title="53: iWiFM">53: iWiFM</li>
-<li data-src="http://149.56.157.81:8487/stream" data-title="54: Jiljil Radio">54: Jiljil Radio</li>
-<li data-src="http://stream.zeno.fm/s4e0u5bqhtzuv" data-title="55: Just Punjabi">55: Just Punjabi</li>
-<li data-src="http://198.178.123.14:8216/;" data-title="56: Kalighat">56: Kalighat</li>
-<li data-src="http://khasharyanvi.com:8000/live" data-title="57: Khas Haryanvi">57: Khas Haryanvi</li>
-<li data-src="http://direct.sharp-stream.com/sunrise.mp3" data-title="58: Kismat Radio">58: Kismat Radio</li>
-<li data-src="http://stream1.liferadio.at/" data-title="59: Life FM">59: Life FM</li>
-<li data-src="https://prclive4.listenon.in/Ishq" data-title="60: Love Guru">60: Love Guru</li>
-<li data-src="http://stream.zeno.fm/d9mbtnhd8tzuv" data-title="61: Love Junction">61: Love Junction</li>
-<li data-src="https://stream.radio.co/s9f46a9bb1/listen" data-title="62: Masala 101">62: Masala 101</li>
-<li data-src="http://playerservices.streamtheworld.com/api/livestream-redirect/MS_EAST_S01.mp3" data-title="63: Mera Sangeet USA">63: Mera Sangeet USA</li>
-<li data-src="http://stream.zeno.fm/ueag5fnrarzuv" data-title="64: Mohabbat Radio">64: Mohabbat Radio</li>
-<li data-src="http://stream.zeno.fm/qe3kbywg65quv" data-title="65: Punjabi Beats">65: Punjabi Beats</li>
-<li data-src="http://us9.streamingpulse.com:7058/stream" data-title="66: Radio Afasana">66: Radio Afasana</li>
-<li data-src="http://listen.openstream.co/4172/audio" data-title="67: Radio Beat Extra">67: Radio Beat Extra</li>
-<li data-src="https://ssl.aloncast.com:1513/;" data-title="68: Radio Brisvaani">68: Radio Brisvaani</li>
-<li data-src="http://radiodhaakad.com:8000/live" data-title="69: Radio Dhaakad">69: Radio Dhaakad</li>
-<li data-src="http://weareharyanvi.com:8000/listen" data-title="70: Radio Haryanvi">70: Radio Haryanvi</li>
-<li data-src="http://162.244.80.52:4614/;stream.mp3" data-title="71: Radio India">71: Radio India</li>
-<li data-src="http://198.7.59.28:8078/stream" data-title="72: Radio JSR">72: Radio JSR</li>
-<li data-src="https://azuracast.radiokasoot.com/radio/8000/listen" data-title="73: Radio Kasoot">73: Radio Kasoot</li>
-<li data-src="http://icecast.bkwsu.eu/radiomadhuban.mp3" data-title="74: Radio Madhuban">74: Radio Madhuban</li>
-<li data-src="https://stream.zenolive.com/5sm5gtgttzzuv.aac" data-title="75: Radio Me Online">75: Radio Me Online</li>
-<li data-src="http://stream.zeno.fm/sgkeutfbaw5tv" data-title="76: Radio Namkin">76: Radio Namkin</li>
-<li data-src="https://node-35.zeno.fm/n1b55arwqg0uv" data-title="77: Radio Noida">77: Radio Noida</li>
-<li data-src="https://solid48.streamupsolutions.com/proxy/radiosbs/radiosbs" data-title="78: Radio SBS FM">78: Radio SBS FM</li>
-<li data-src="https://eu10.fastcast4u.com:5045/stream" data-title="79: Radio Sense">79: Radio Sense</li>
-<li data-src="http://s1.voscast.com:9484/;stream.mp3" data-title="80: Radio Teen Taal">80: Radio Teen Taal</li>
-<li data-src="http://titan.shoutca.st:8647/stream" data-title="81: Radio Theeram">81: Radio Theeram</li>
-<li data-src="http://173.212.234.220/radio/8000/radio.mp3" data-title="82: Radio Udaan">82: Radio Udaan</li>
-<li data-src="http://sc18.strictlyhosting.co.uk:8000/;" data-title="83: Radio XL">83: Radio XL</li>
-<li data-src="http://us9.streamingpulse.com:7415/;stream.mp3" data-title="84: Radio Zindagi Virginia">84: Radio Zindagi Virginia</li>
-<li data-src="http://us9.streamingpulse.com:7431/;stream.mp3" data-title="85: Radio Zindagi San Fransisco">85: Radio Zindagi San Fransisco</li>
-<li data-src="http://us9.streamingpulse.com:7417/;stream.mp3" data-title="86: Radio Zindagi New York">86: Radio Zindagi New York</li>
-<li data-src="http://stream.radiobollyfm.in:8201/;stream.mp3" data-title="87: Radio Bolly FM">87: Radio Bolly FM</li>
-<li data-src="http://stream.zeno.fm/mb6b1xs7m5zuv" data-title="88: Radio Taj">88: Radio Taj</li>
-<li data-src="https://stream.zeno.fm/g372rxef798uv" data-title="89: Retro Bollywood">89: Retro Bollywood</li>
-<li data-src="https://sayajifm.radioca.st/stream" data-title="90: Sayaji Radio">90: Sayaji Radio</li>
-<li data-src="http://janus.shoutca.st:8112/stream" data-title="91: Shripad Radio">91: Shripad Radio</li>
-<li data-src="http://41.72.210.222:88/stream" data-title="92: Sound Asia FM">92: Sound Asia FM</li>
-<li data-src="http://79.143.187.96:8053/live" data-title="93: Suvidha Radio">93: Suvidha Radio</li>
-<li data-src="http://s1.voscast.com:9484/;stream.mp3" data-title="94: Teen Taal">94: Teen Taal</li>
-<li data-src="https://stream.zenolive.com/96gxev8nhzzuv.aac" data-title="95: Track FM">95: Track FM</li>
-<li data-src="http://music2.vvradio.co.in:2802/stream" data-title="96: V V Radio">96: V V Radio</li>
-<li data-src="http://stream.zeno.fm/d0rwvvwa6p8uv" data-title="97: Goldy Blast">97: Goldy Blast</li>
-<li data-src="https://samcloud.spacial.com/api/listen?sid=124642&rid=261558&f=aac,any&br=64000,any&m=sc" data-title="98: Sheetal Sangeet Gujarati">98: Sheetal Sangeet Gujarati</li>
-<li data-src="http://s9.voscast.com:7402/stream/1/" data-title="Rangilo Gujarat">99: Rangilo Gujarat</li>
-</ul>
-
- 
- 
- 
- 
- 
- <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const playerElement = document.getElementById('player');
-    const player = new MediaElementPlayer(playerElement, {
-      features: ['playpause', 'volume'],
-      startVolume: 1,
-      audioWidth: '100%',
-    });
-
-    const playlistItems = document.querySelectorAll('#playlist li');
-    const trackNameContainer = document.getElementById('trackname');
-    const playpauseImg = document.getElementById('playpauseimg');
-	const volumeControl = document.getElementById('volumeControl');
-    let currentIndex = 0;
-
-
-
+    // Function to update the play/pause icon
     function updatePlayPauseIcon() {
-      if (player.media.paused) {
-        playpauseImg.src = "https://live.staticflickr.com//65535//54222863122_b4b5219261_o.png"; // Play icon
-      } else {
-        playpauseImg.src = "https://live.staticflickr.com//65535//54224009679_55838f6b5e_o.png"; // Pause icon
-      }
+        if (player1.paused) {
+            playpauseImg.src = "https://live.staticflickr.com//65535//54222863122_b4b5219261_o.png"; // Play icon
+        } else {
+            playpauseImg.src = "https://live.staticflickr.com//65535//54224009679_55838f6b5e_o.png"; // Pause icon
+        }
     }
 
-    function loadTrack(index) {
-      const track = playlistItems[index];
-      const src = track.getAttribute('data-src');
-      const title = track.getAttribute('data-title');
-
-      player.setSrc(src);
-      player.load();
-      player.play();
-
-      trackNameContainer.innerHTML = 'Now Playing: ' + title;
-
-      playlistItems.forEach(item => item.classList.remove('current'));
-      track.classList.add('current');
-      updatePlayPauseIcon();
+    // Pause player1
+    function pausePlayer1() {
+        player1.pause();
+        updatePlayPauseIcon();
     }
 
-    playlistItems.forEach((item, index) => {
-      item.addEventListener('click', () => {
-        currentIndex = index;
-        loadTrack(currentIndex);
-      });
-    });
-
-// Volume Control
-   volumeControl.addEventListener('input', (e) => {
-  const volume = e.target.value;
-  
-  if (volume == 0) {
-    volumeIcon.src = "https://live.staticflickr.com//65535//54239544849_b0ac5b3fa2_o.png"; // Mute icon
-  } else if (volume < 0.4) {
-    volumeIcon.src = "https://live.staticflickr.com//65535//54239723460_1d10ffe5b7_o.png"; // Low volume icon
-  } else if (volume < 0.8) {
-    volumeIcon.src = "https://live.staticflickr.com//65535//54239314676_008e59508e_o.png"; // Low volume icon
-  } else {
-    volumeIcon.src = "https://live.staticflickr.com//65535//54238416147_1851f48a34_o.png"; // High volume icon
-  }
-  player.setVolume(e.target.value);
-});
-
-
-    document.getElementById('prevTrack').addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + playlistItems.length) % playlistItems.length;
-      loadTrack(currentIndex);
-    });
-
-    document.getElementById('nextTrack').addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % playlistItems.length;
-      loadTrack(currentIndex);
-    });
-
-    playpauseImg.addEventListener('click', () => {
-      if (player.media.paused) {
-        player.play();
-      } else {
+    // Play player1
+    function playPlayer1(src) {
+        if (src) {
+            player1.src = src; // Set the source if provided
+        }
+        player1.play();
         player.pause();
-      }
-      updatePlayPauseIcon();
+        updatePlayPauseIcon();
+    }
+
+    // Toggle radios
+    toggleradios.addEventListener('click', function () {
+        if (hrdos.style.display === '') {
+            hrdos.style.display = 'none';
+            otherRadio.style.display = 'block';
+            trackname.innerHTML = 'Other Radios';
+            toggleradios.innerHTML = 'Hindi Radios';
+			player.src = '';
+			container.style.display = 'none';
+        } else {
+            hrdos.style.display = '';
+            otherRadio.style.display = 'none';
+            toggleradios.innerHTML = 'Other Radios';
+            trackname.innerHTML = 'Hindi Radios';
+            pausePlayer1(); // Pause player1 when toggling back
+			player1.src = '';
+			container.style.display = '';
+        }
+		updatePlayPauseIcon();
     });
 
-    player.media.addEventListener('play', updatePlayPauseIcon);
-    player.media.addEventListener('pause', updatePlayPauseIcon);
+    // Handle play/pause button
+    playpauseImg.addEventListener("click", function () {
+        if (player1.paused) {
+            playPlayer1();
+        } else {
+            pausePlayer1();
+        }
+    });
 
-    // Load the first track initially
-    loadTrack(currentIndex);
-  });
+    // Handle clicking on the playlist
+    document.getElementById("play1").addEventListener("click", function (event) {
+        const li = event.target.closest("li");
+        if (!li) return;
+
+        const newSrc = li.getAttribute("data-src");
+
+        if (player1.src !== newSrc) {
+            // Load new source and play
+            playPlayer1(newSrc);
+            player.pause();
+            currentPlayingLi = li;
+            trackname.innerHTML = li.getAttribute("data-title");
+            updatePlayPauseIcon();
+        } else if (player1.paused) {
+            // Resume playback
+            playPlayer1();
+            player.pause();
+        } else {
+            // Pause playback
+            pausePlayer1();
+        }
+    });
 </script>
+
 </body>
 </html>
